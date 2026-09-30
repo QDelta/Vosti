@@ -1,0 +1,613 @@
+{
+  "checked_adapter_sha256": "b471b4c5c0738e50c1996d43734fdc66ff23a3b55d68052563218bdf8d9ae541",
+  "generated_body_sha256": "e6870609737d0c58b9c919850190e98fab18e9cac4e5b095142c59962e04d502",
+  "inventory_contributions": [
+    {
+      "constants": {
+        "BLOCK_K": 128,
+        "BLOCK_M": 16,
+        "BLOCK_N": 16
+      },
+      "execution_identity": "016346cd0086b33f82173f80dd323fcb207aee892c4aa5e872ba23e1c92f48ae",
+      "families": [
+        "qwen3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 128,
+        "BLOCK_M": 16,
+        "BLOCK_N": 64
+      },
+      "execution_identity": "fa2147ed176b1d70d312334ac4ccc17f98a13b748ee19e1a8350c1aab21a790b",
+      "families": [
+        "llama3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 128,
+        "BLOCK_M": 64,
+        "BLOCK_N": 128
+      },
+      "execution_identity": "c658cdd88fad42680d44fd67a8b06b199ebdb33022e778f27321401c93483d42",
+      "families": [
+        "gemma3",
+        "gemma4"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 256,
+        "BLOCK_M": 16,
+        "BLOCK_N": 64
+      },
+      "execution_identity": "7cfa257c25764865827e520389d6efb902815ea156c039c7c239095e98a33f3c",
+      "families": [
+        "gemma3",
+        "gemma4"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 256,
+        "BLOCK_M": 32,
+        "BLOCK_N": 32
+      },
+      "execution_identity": "873e20d80410b062d849bb29e88af303b9c3a6dbd95e4f6accee9fdeec1ccc61",
+      "families": [
+        "gemma3",
+        "gemma4",
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 256,
+        "BLOCK_M": 64,
+        "BLOCK_N": 32
+      },
+      "execution_identity": "32d277885993f269cd3d5618050828fafc52144d4969550818cebd0a1379dc44",
+      "families": [
+        "llama3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 256,
+        "BLOCK_M": 64,
+        "BLOCK_N": 64
+      },
+      "execution_identity": "3df8c60e605574093510c9843621c8791338cdb9daca0e5e8086d1de3b8f2b75",
+      "families": [
+        "gemma3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 512,
+        "BLOCK_M": 32,
+        "BLOCK_N": 32
+      },
+      "execution_identity": "737cc0c0862ae29bef59e394778f3319a5b11c26fb314963b11be1616f2e4812",
+      "families": [
+        "gemma3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 64,
+        "BLOCK_M": 128,
+        "BLOCK_N": 128
+      },
+      "execution_identity": "3f60cf30311e934daeb72e21caf2bb6be094a4660ad0560b29087ddb3a0d915e",
+      "families": [
+        "qwen3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 64,
+        "BLOCK_M": 128,
+        "BLOCK_N": 256
+      },
+      "execution_identity": "ad74aff3096036617adf2f4e81e0794850f13827a6f8409e0dffe1c73539d502",
+      "families": [
+        "gemma3",
+        "gemma4",
+        "llama3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 64,
+        "BLOCK_M": 16,
+        "BLOCK_N": 64
+      },
+      "execution_identity": "1cbec674e3c3d6488dd922b3019d14639e01a3466f820d48afff665e41dba6c9",
+      "families": [
+        "gemma4",
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 64,
+        "BLOCK_M": 32,
+        "BLOCK_N": 128
+      },
+      "execution_identity": "8f5e1743b908fcb4e5ce54332c58a9b6a8aa0ffcaf02cfbb849ae0d48926e747",
+      "families": [
+        "qwen3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 64,
+        "BLOCK_M": 64,
+        "BLOCK_N": 128
+      },
+      "execution_identity": "9a1af16a11f2970888c29b697848100fc0154e55befe800865bef6aea9b1bce3",
+      "families": [
+        "gemma3",
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "matmul_kernel",
+      "source": "matmul.py"
+    }
+  ],
+  "kind": "rectangular_kernel_interface",
+  "raw": {
+    "generated_body_sha256": "becb69a762713552833cdbf5ce378de5b6d9bd9103ef09fb3e7ace29c426ccb6",
+    "implementations": [
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "016346cd0086b33f82173f80dd323fcb207aee892c4aa5e872ba23e1c92f48ae",
+        "generated_body_sha256": "c70fad97c71b19605179ed75276db62fdfbb09d18e0a5f3e16f462d8bd315bd9",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "c70fad97c71b19605179ed75276db62fdfbb09d18e0a5f3e16f462d8bd315bd9",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "b483a5c020ee2047baf06caa39e707f7938401857bb50993c90122e4a2df5bc5",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "1cbec674e3c3d6488dd922b3019d14639e01a3466f820d48afff665e41dba6c9",
+        "generated_body_sha256": "4520d3d963e0b5d3a715e85ffaddaa50e94bc27d1db3406013a05ad694c156c9",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "4520d3d963e0b5d3a715e85ffaddaa50e94bc27d1db3406013a05ad694c156c9",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "2249c1b7ce2ae84efba7cc1dabf9a1dc54dd1139a66f1abc988c86e631220341",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "32d277885993f269cd3d5618050828fafc52144d4969550818cebd0a1379dc44",
+        "generated_body_sha256": "09dc4d1f31b5f3cc794a48917879050c2b3eb9e49043993793050fe959c583d0",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "09dc4d1f31b5f3cc794a48917879050c2b3eb9e49043993793050fe959c583d0",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "ce9cf1dd56593f1f7d9a069520334ff85a7df7db985383f3d069f9a4c5799f69",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "3df8c60e605574093510c9843621c8791338cdb9daca0e5e8086d1de3b8f2b75",
+        "generated_body_sha256": "4928531c5d3af5782500281b5c845646a380d0e7e9255072cc29f46640868d06",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "4928531c5d3af5782500281b5c845646a380d0e7e9255072cc29f46640868d06",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "a7c8ebbfc8797bbef39d2aef016b66f20d0af2a4c4588b07804084b09f8de0ee",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "3f60cf30311e934daeb72e21caf2bb6be094a4660ad0560b29087ddb3a0d915e",
+        "generated_body_sha256": "8ac8fdb24f0d723c7cc4c3e765ed08ce8cf363942636eb466fe8e7b1f3b19974",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "8ac8fdb24f0d723c7cc4c3e765ed08ce8cf363942636eb466fe8e7b1f3b19974",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "108476bdcf6f5e3fd7a559240a4442443d8fdd2fda4b733840fb38a33368f7c4",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "737cc0c0862ae29bef59e394778f3319a5b11c26fb314963b11be1616f2e4812",
+        "generated_body_sha256": "c3ce163d33e76eb09add52f96cf2c510ed77fa99824e00ec1210f744925f023d",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "c3ce163d33e76eb09add52f96cf2c510ed77fa99824e00ec1210f744925f023d",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "514dfea9b247f96b42fb50532ac6e4ab87380b3d9fbe11c6b09d75312f5565dc",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "7cfa257c25764865827e520389d6efb902815ea156c039c7c239095e98a33f3c",
+        "generated_body_sha256": "53faa70b8d7468dc166fc8fc75e0416ef0260a4860d19769d41e64ddf3f64fe8",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "53faa70b8d7468dc166fc8fc75e0416ef0260a4860d19769d41e64ddf3f64fe8",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "bcad885fd13736cfaf677afadc25199f4280e24efea3c9eb72c17c01b55aad3c",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "873e20d80410b062d849bb29e88af303b9c3a6dbd95e4f6accee9fdeec1ccc61",
+        "generated_body_sha256": "2a494808924c7c487227d85e2f0e3a5c898d331dd4c592123e816c6a5db82d31",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "2a494808924c7c487227d85e2f0e3a5c898d331dd4c592123e816c6a5db82d31",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "8d30fcb71407d5dc8f63c6238e2451d22052e034bfe3b1acc535d35bdacff73c",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "8f5e1743b908fcb4e5ce54332c58a9b6a8aa0ffcaf02cfbb849ae0d48926e747",
+        "generated_body_sha256": "82df8031d1e35959aeb8fee4978fb5b47f7d74ffd85c9bd03de507b7e790e316",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "82df8031d1e35959aeb8fee4978fb5b47f7d74ffd85c9bd03de507b7e790e316",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "e87b9b58b8e94271a32b09c7f0bb6d0c767067896d187c74bb83dcdbdddb39b7",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "9a1af16a11f2970888c29b697848100fc0154e55befe800865bef6aea9b1bce3",
+        "generated_body_sha256": "230f8c57e170bcf6595cf44c2221b7142b7126a3f96a442e2c1ae11300fa6df3",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "230f8c57e170bcf6595cf44c2221b7142b7126a3f96a442e2c1ae11300fa6df3",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "c92e4017cbb5eb858a5db9ba7d83a53d188112c6446c707df1ebc2b577f572d5",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "ad74aff3096036617adf2f4e81e0794850f13827a6f8409e0dffe1c73539d502",
+        "generated_body_sha256": "1e7de25b9acde61a08b9acdb833ead4675447bcac285f45378803c9c835e00c0",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "1e7de25b9acde61a08b9acdb833ead4675447bcac285f45378803c9c835e00c0",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "c4adcbc70e8b7e8e22125e213e76e393aaa0a7caed30bef098eb638f18d61020",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "c658cdd88fad42680d44fd67a8b06b199ebdb33022e778f27321401c93483d42",
+        "generated_body_sha256": "06831c844130705f1bc12bd0eeada5838eda421972fe05db5dddc369183e43e5",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "06831c844130705f1bc12bd0eeada5838eda421972fe05db5dddc369183e43e5",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "8a7f815955b3e2fd0125bb63c6e8c4d02d986db29f3826885c633535ad75a43c",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "fa2147ed176b1d70d312334ac4ccc17f98a13b748ee19e1a8350c1aab21a790b",
+        "generated_body_sha256": "25b3c111605139f4172c6791f0d168532cdb40c312d56c8324345a3bafdf7df5",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "c"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "25b3c111605139f4172c6791f0d168532cdb40c312d56c8324345a3bafdf7df5",
+            "kernel": "matmul_kernel",
+            "output_functions": [
+              "raw_c_after"
+            ],
+            "output_parameters": [
+              "c"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "4196d23d5b527ae2628624305f743bfcfd01a9320af9954810da0338d20f54b1",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      }
+    ],
+    "interpretation": "one_fixed_deployed_implementation",
+    "kind": "static_implementation_interface",
+    "logical_body_sha256": "5ab97861b23ccdd1525be8b9aef268916fa63dadecf7bb6fe1cf37d7f673ce10",
+    "schema_version": 1
+  },
+  "schema_version": 1
+}

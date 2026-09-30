@@ -1,0 +1,13 @@
+[package]
+name = "paper-effort-rust"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+verus_syn = { version = "=0.0.0-2026-08-02-0125", features = ["full", "visit", "extra-traits"] }
+proc-macro2 = { version = "1", features = ["span-locations"] }
+quote = "1"
+serde_json = "1"
+
+[workspace]

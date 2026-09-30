@@ -1,0 +1,19 @@
+{# Normalize text-only OpenAI content arrays to the agent's string messages.
+   No separators, whitespace changes, role changes or model tokens are added.
+   Non-text inputs are rejected instead of silently dropping content. #}
+{%- set bench_text = namespace(messages=[]) -%}
+{%- for bench_message in messages -%}
+    {%- if bench_message['content'] is string -%}
+        {%- set bench_text.messages = bench_text.messages + [bench_message] -%}
+    {%- else -%}
+        {%- set bench_parts = namespace(text='') -%}
+        {%- for bench_part in bench_message['content'] -%}
+            {%- if bench_part['type'] != 'text' -%}
+                {{- raise_exception('The agent benchmark accepts text content only') -}}
+            {%- endif -%}
+            {%- set bench_parts.text = bench_parts.text + bench_part['text'] -%}
+        {%- endfor -%}
+        {%- set bench_text.messages = bench_text.messages + [{'role': bench_message['role'], 'content': bench_parts.text}] -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- set messages = bench_text.messages -%}

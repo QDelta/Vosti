@@ -1,0 +1,225 @@
+{
+  "checked_adapter_sha256": "63a5f9085384806fb68769b68f938db789e4ad8450f4367d1ff2665de2ee1b6a",
+  "generated_body_sha256": "56f978ba9ce928dc433e6f160d5cf1fbc1dd888d502bc7fe210c9928a9ab027b",
+  "inventory_contributions": [
+    {
+      "constants": {
+        "BLOCK_K": 128,
+        "BLOCK_M": 16,
+        "BLOCK_N": 32
+      },
+      "execution_identity": "6d477b0bfdecac3efb5006ef67fc32b1f024ed26de069cff85090e14b9f82c6e",
+      "families": [
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "qkv_matmul_kernel",
+      "source": "qkv_matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 256,
+        "BLOCK_M": 16,
+        "BLOCK_N": 32
+      },
+      "execution_identity": "ecb6f8f1dbe761696fd985afb6220189032d4cd4e9af235a393d6481de6da497",
+      "families": [
+        "gemma3"
+      ],
+      "kernel": "qkv_matmul_kernel",
+      "source": "qkv_matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 256,
+        "BLOCK_M": 32,
+        "BLOCK_N": 64
+      },
+      "execution_identity": "b16fd2a679c57feb08c1b78eb9f38df2cced5df61175cde88de469e7e7761b24",
+      "families": [
+        "gemma3",
+        "gemma4",
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "qkv_matmul_kernel",
+      "source": "qkv_matmul.py"
+    },
+    {
+      "constants": {
+        "BLOCK_K": 64,
+        "BLOCK_M": 16,
+        "BLOCK_N": 64
+      },
+      "execution_identity": "65d8f2d63c023d2ec0298b1e83285b9cfdd84c99bb2b0de15fa5c0dd4dea0c8e",
+      "families": [
+        "gemma4"
+      ],
+      "kernel": "qkv_matmul_kernel",
+      "source": "qkv_matmul.py"
+    }
+  ],
+  "kind": "rectangular_kernel_interface",
+  "raw": {
+    "generated_body_sha256": "bb3a3a974127f38087e2ad295b4763627ef364d56a1462e47d9501cce0b0001e",
+    "implementations": [
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "65d8f2d63c023d2ec0298b1e83285b9cfdd84c99bb2b0de15fa5c0dd4dea0c8e",
+        "generated_body_sha256": "32df300b8ebe8c67d55d08f0388dce9c7a5a45df871d938c76c5445b2071f847",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "oq",
+          "ok",
+          "ov"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "32df300b8ebe8c67d55d08f0388dce9c7a5a45df871d938c76c5445b2071f847",
+            "kernel": "qkv_matmul_kernel",
+            "output_functions": [
+              "raw_oq_after",
+              "raw_ok_after",
+              "raw_ov_after"
+            ],
+            "output_parameters": [
+              "oq",
+              "ok",
+              "ov"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "eb24e1a4aeb6a382048f73c92732894b1aea82e99c34f69689708a09757d6f6f",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "6d477b0bfdecac3efb5006ef67fc32b1f024ed26de069cff85090e14b9f82c6e",
+        "generated_body_sha256": "dcd1b631c541b018e9ed1fb8a9a10e710c5799d6daf127b8f822f3fdd7b387e3",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "oq",
+          "ok",
+          "ov"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "dcd1b631c541b018e9ed1fb8a9a10e710c5799d6daf127b8f822f3fdd7b387e3",
+            "kernel": "qkv_matmul_kernel",
+            "output_functions": [
+              "raw_oq_after",
+              "raw_ok_after",
+              "raw_ov_after"
+            ],
+            "output_parameters": [
+              "oq",
+              "ok",
+              "ov"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "bc5b9597be264e77554a785643ab122c2e0851ab98997e3aa6bc9c46e43771e2",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "b16fd2a679c57feb08c1b78eb9f38df2cced5df61175cde88de469e7e7761b24",
+        "generated_body_sha256": "c9a8b0f9ed52a7d091502d1e15a5e1631812688255428966afa25904e33dd029",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "oq",
+          "ok",
+          "ov"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "c9a8b0f9ed52a7d091502d1e15a5e1631812688255428966afa25904e33dd029",
+            "kernel": "qkv_matmul_kernel",
+            "output_functions": [
+              "raw_oq_after",
+              "raw_ok_after",
+              "raw_ov_after"
+            ],
+            "output_parameters": [
+              "oq",
+              "ok",
+              "ov"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "a4c17d6ef4c2aee7ee5f5a46a422d91f1504309e7c63f1a4a87404082e073596",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "ecb6f8f1dbe761696fd985afb6220189032d4cd4e9af235a393d6481de6da497",
+        "generated_body_sha256": "cb8ea5a2a3dd166ca67f09c7e861d17c9d718d5b083614a9afc25201133e1319",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "oq",
+          "ok",
+          "ov"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "cb8ea5a2a3dd166ca67f09c7e861d17c9d718d5b083614a9afc25201133e1319",
+            "kernel": "qkv_matmul_kernel",
+            "output_functions": [
+              "raw_oq_after",
+              "raw_ok_after",
+              "raw_ov_after"
+            ],
+            "output_parameters": [
+              "oq",
+              "ok",
+              "ov"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "9846c49a9cbfd2609cc87a9c8deac351edcb1d52ddb598c36c27e7f093207826",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      }
+    ],
+    "interpretation": "one_fixed_deployed_implementation",
+    "kind": "static_implementation_interface",
+    "logical_body_sha256": "f81a0f7555cd792b92c91cc35cb16ca50165b2d85bb3edbaeca8c5644abeac59",
+    "schema_version": 1
+  },
+  "schema_version": 1
+}

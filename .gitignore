@@ -1,0 +1,10 @@
+/target
+/.venv
+/models/
+__pycache__/
+*.pyc
+.pytest_cache/
+.verus-log/
+.DS_Store
+*.rlib
+/.claude/worktrees/

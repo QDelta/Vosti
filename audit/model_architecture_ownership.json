@@ -1,0 +1,279 @@
+{
+  "schema_version": 10,
+  "families": [
+    "gemma3",
+    "gemma4",
+    "llama3",
+    "qwen3"
+  ],
+  "pre_admission_kernel_families": [],
+  "kernel_qualification": {
+    "gemma3": {
+      "scope": "python/vosti_kernels/model_families/gemma3/scope.json",
+      "inventory": "profile_catalog"
+    },
+    "gemma4": {
+      "scope": "python/vosti_kernels/model_families/gemma4/scope.json",
+      "inventory": "profile_catalog"
+    },
+    "llama3": {
+      "scope": "python/vosti_kernels/model_families/llama3/scope.json",
+      "inventory": "contract_catalog"
+    },
+    "qwen3": {
+      "scope": "python/vosti_kernels/model_families/qwen3/scope.json",
+      "inventory": "contract_catalog"
+    }
+  },
+  "kernel_interfaces": {
+    "kv_store": {
+      "generated": "src/boundary/backend_certificates/kv_store.rs",
+      "manifest": "audit/kv_store_kernel_interface.json",
+      "generator": "scripts/verification/verify_mutation_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/kv_store_operator.rs",
+          "module": "boundary::kv_store_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        }
+      ]
+    },
+    "rotary": {
+      "generated": "src/boundary/backend_certificates/rotary.rs",
+      "manifest": "audit/rotary_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/rotary_operator.rs",
+          "module": "boundary::rotary_operator"
+        }
+      ]
+    },
+    "head_rms_norm": {
+      "generated": "src/boundary/backend_certificates/head_rms_norm.rs",
+      "manifest": "audit/head_rms_norm_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/head_normalization_operator.rs",
+          "module": "boundary::head_normalization_operator"
+        }
+      ]
+    },
+    "offset_head_rms_norm": {
+      "generated": "src/boundary/backend_certificates/offset_head_rms_norm.rs",
+      "manifest": "audit/offset_head_rms_norm_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/head_normalization_operator.rs",
+          "module": "boundary::head_normalization_operator"
+        }
+      ]
+    },
+    "embedding": {
+      "generated": "src/boundary/backend_certificates/embedding.rs",
+      "manifest": "audit/embedding_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/embedding_operator.rs",
+          "module": "boundary::embedding_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        }
+      ]
+    },
+    "scaled_embedding": {
+      "generated": "src/boundary/backend_certificates/scaled_embedding.rs",
+      "manifest": "audit/scaled_embedding_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/embedding_operator.rs",
+          "module": "boundary::embedding_operator"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_primitives.rs",
+          "module": "boundary::four_norm_gated_primitives"
+        }
+      ]
+    },
+    "add": {
+      "generated": "src/boundary/backend_certificates/add.rs",
+      "manifest": "audit/add_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/pointwise_operator.rs",
+          "module": "boundary::pointwise_operator"
+        }
+      ]
+    },
+    "silu_mul": {
+      "generated": "src/boundary/backend_certificates/silu_mul.rs",
+      "manifest": "audit/silu_mul_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/pointwise_operator.rs",
+          "module": "boundary::pointwise_operator"
+        }
+      ]
+    },
+    "gelu_tanh_mul": {
+      "generated": "src/boundary/backend_certificates/gelu_tanh_mul.rs",
+      "manifest": "audit/gelu_tanh_mul_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/pointwise_operator.rs",
+          "module": "boundary::pointwise_operator"
+        }
+      ]
+    },
+    "scale": {
+      "generated": "src/boundary/backend_certificates/scale.rs",
+      "manifest": "audit/scale_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/pointwise_operator.rs",
+          "module": "boundary::pointwise_operator"
+        }
+      ]
+    },
+    "softcap": {
+      "generated": "src/boundary/backend_certificates/softcap.rs",
+      "manifest": "audit/softcap_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/pointwise_operator.rs",
+          "module": "boundary::pointwise_operator"
+        }
+      ]
+    },
+    "offset_rms_norm": {
+      "generated": "src/boundary/backend_certificates/offset_rms_norm.rs",
+      "manifest": "audit/offset_rms_norm_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/normalization_operator.rs",
+          "module": "boundary::normalization_operator"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_primitives.rs",
+          "module": "boundary::four_norm_gated_primitives"
+        }
+      ]
+    },
+    "rms_norm": {
+      "generated": "src/boundary/backend_certificates/rms_norm.rs",
+      "manifest": "audit/rms_norm_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/normalization_operator.rs",
+          "module": "boundary::normalization_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_primitives.rs",
+          "module": "boundary::four_norm_gated_primitives"
+        }
+      ]
+    },
+    "residual_rms_norm": {
+      "generated": "src/boundary/backend_certificates/residual_rms_norm.rs",
+      "manifest": "audit/residual_rms_norm_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/normalization_operator.rs",
+          "module": "boundary::normalization_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        }
+      ]
+    },
+    "qkv": {
+      "generated": "src/boundary/backend_certificates/qkv.rs",
+      "manifest": "audit/qkv_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/qkv_operator.rs",
+          "module": "boundary::qkv_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        }
+      ]
+    },
+    "linear": {
+      "generated": "src/boundary/backend_certificates/linear.rs",
+      "manifest": "audit/linear_kernel_interface.json",
+      "generator": "scripts/verification/verify_rectangular_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/linear_operator.rs",
+          "module": "boundary::linear_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        }
+      ]
+    },
+    "attention": {
+      "generated": "src/boundary/backend_certificates/attention.rs",
+      "manifest": "audit/attention_kernel_interfaces.json",
+      "generator": "scripts/verification/verify_attention_interfaces.py",
+      "consumer_modules": [
+        {
+          "path": "src/boundary/attention_operator.rs",
+          "module": "boundary::attention_operator"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "module": "boundary::tensor_runtime"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_primitives.rs",
+          "module": "boundary::four_norm_gated_primitives"
+        },
+        {
+          "path": "src/proof/model/dense_swiglu/batch_invariance.rs",
+          "module": "proof::model::dense_swiglu::batch_invariance"
+        },
+        {
+          "path": "src/proof/model/four_norm_gated/batch_invariance.rs",
+          "module": "proof::model::four_norm_gated::batch_invariance"
+        },
+        {
+          "path": "src/proof/model/four_norm_gated/relocation.rs",
+          "module": "proof::model::four_norm_gated::relocation"
+        }
+      ]
+    }
+  },
+  "family_compositions": {
+    "qwen3": "dense_swiglu",
+    "llama3": "dense_swiglu",
+    "gemma3": "four_norm_gated",
+    "gemma4": "four_norm_gated"
+  }
+}

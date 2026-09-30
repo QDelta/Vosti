@@ -1,0 +1,61 @@
+[package]
+name = "vosti-verus"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "vosti_verus"
+crate-type = ["lib"]
+
+[features]
+default = []
+openai-server = [
+    "dep:axum",
+    "dep:serde",
+    "dep:serde_json",
+    "dep:tokio",
+    "dep:tokio-stream",
+]
+
+[dependencies]
+vstd = "=0.0.0-2026-08-23-0033"
+pyo3 = { version = "0.22", features = ["auto-initialize"] }
+axum = { version = "0.8", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
+tokio = { version = "1", features = ["macros", "net", "rt-multi-thread", "sync", "time"], optional = true }
+tokio-stream = { version = "0.1", optional = true }
+
+[[example]]
+name = "verus_server_qwen3"
+required-features = ["openai-server"]
+
+[[example]]
+name = "verus_server_gemma3"
+required-features = ["openai-server"]
+
+[[example]]
+name = "verus_server_llama3"
+required-features = ["openai-server"]
+
+[[example]]
+name = "verus_server_gemma4"
+required-features = ["openai-server"]
+
+[[test]]
+name = "openai_server"
+required-features = ["openai-server"]
+
+[package.metadata.verus]
+verify = true
+
+[lints.rust]
+# Verus ghost-code support: imports/items behind `cfg(verus_only)` are present
+# during verification but erased during normal `cargo build`.
+unexpected_cfgs = { level = "warn", check-cfg = [
+  'cfg(verus_only)',
+] }
+
+[profile.dev]
+debug = 1

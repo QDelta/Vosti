@@ -1,0 +1,126 @@
+{
+  "kernels": {
+    "matmul_kernel": {
+      "module": "matmul",
+      "entrypoint": "matmul",
+      "source": "matmul.py",
+      "source_sha256": "371a68a7e433d829b21b12706492ba52087c4885e528573b829dda951c6fe608"
+    },
+    "qkv_matmul_kernel": {
+      "module": "qkv_matmul",
+      "entrypoint": "qkv_matmul",
+      "source": "qkv_matmul.py",
+      "source_sha256": "636b33e167524a3c7cbfd39bed52953ee8e7fda6eebab4945731e2feb49a61df"
+    },
+    "embedding_kernel": {
+      "module": "embedding",
+      "entrypoint": "embedding",
+      "source": "embedding.py",
+      "source_sha256": "e9fe3b0d4f30d86074aa29a16e1293fb2dde40c50c82dea58063c4f73bdac4a9"
+    },
+    "rmsnorm_kernel": {
+      "module": "rmsnorm",
+      "entrypoint": "rmsnorm",
+      "source": "rmsnorm.py",
+      "source_sha256": "d98cb229f506413bebc20a72dec72129194f39007843675eb866fc62799b03ae"
+    },
+    "rmsnorm_residual_kernel": {
+      "module": "rmsnorm_residual",
+      "entrypoint": "rmsnorm_residual",
+      "source": "rmsnorm_residual.py",
+      "source_sha256": "b0a84bbfc920d3b98ac1c03bb90307b04ebcb1beb50ee67a9730235230653d13"
+    },
+    "head_rms_norm_kernel": {
+      "module": "qk_norm",
+      "entrypoint": "head_rms_norm",
+      "source": "qk_norm.py",
+      "source_sha256": "60bcabead649e0177c79da9cbf062f1685ca410be8cc58942456557b81461ee8"
+    },
+    "rope_kernel": {
+      "module": "rope",
+      "entrypoint": "rope",
+      "source": "rope.py",
+      "source_sha256": "e2225ae4574a66e784ea3816214b658b5cfa8f903a06a4cf9fbcfdd882d27743"
+    },
+    "silu_mul_kernel": {
+      "module": "silu_mul",
+      "entrypoint": "silu_mul",
+      "source": "silu_mul.py",
+      "source_sha256": "b637a59132117f1f42e7fab19c6468fae3ae33fe78ec71fa029e59a3bdc4af6c"
+    },
+    "store_cache_kernel": {
+      "module": "store_kv_cache",
+      "entrypoint": "store_kv_cache",
+      "source": "store_kv_cache.py",
+      "source_sha256": "e98b4e04772bf49a5c18f90bdc71bae2ffebfc2a32c32186c94bcb82b24d0691"
+    },
+    "fattn_varlen_paged_fwd_block_ptr_kernel": {
+      "module": "fattn_paged",
+      "entrypoint": "fattn_varlen_paged_fwd_block_ptr",
+      "source": "fattn_paged.py",
+      "source_sha256": "848b738bf01da25744e9ad8ce410a92a305c3a90fd97878ffeb5c761c817aff2"
+    },
+    "scaled_embedding_kernel": {
+      "module": "scaled_embedding",
+      "entrypoint": "scaled_embedding",
+      "source": "scaled_embedding.py",
+      "source_sha256": "218bd5872b5bc9f8a964008c9b6a63c0301ac1d96cbc38657056c561a56adb20"
+    },
+    "gemma_rmsnorm_kernel": {
+      "module": "gemma_rmsnorm",
+      "entrypoint": "gemma_rmsnorm",
+      "source": "gemma_rmsnorm.py",
+      "source_sha256": "07932b0f7dfdf11355fa3e50d9c3a3cc26aed5173ecdc9937aad2adaa2033a1b"
+    },
+    "gemma_head_rms_norm_kernel": {
+      "module": "gemma_qk_norm",
+      "entrypoint": "gemma_qk_norm",
+      "source": "gemma_qk_norm.py",
+      "source_sha256": "686f9233fff63d8a554fbf094c888d787639ef9a1794adfc1f0b012123f5ce87"
+    },
+    "fattn_varlen_paged_swa_kernel": {
+      "module": "fattn_paged_swa",
+      "entrypoint": "fattn_varlen_paged_swa",
+      "source": "fattn_paged_swa.py",
+      "source_sha256": "b5a0f480a67caffac3d287f15bfc312634cc02c8fb187a601ec3363f8b2aa950"
+    },
+    "add_kernel": {
+      "module": "add",
+      "entrypoint": "add",
+      "source": "add.py",
+      "source_sha256": "8828b36ed29cdf2d01441dbaa2e0088a8682b12b93be65ac6c183fc115454210"
+    },
+    "gelu_tanh_mul_kernel": {
+      "module": "gelu_tanh_mul",
+      "entrypoint": "gelu_tanh_mul",
+      "source": "gelu_tanh_mul.py",
+      "source_sha256": "ac8e556f854682674dc88b1ee6c81d20e7313cad4ed398f6553e272947e33941"
+    },
+    "scale_kernel": {
+      "module": "scale",
+      "entrypoint": "scale",
+      "source": "scale.py",
+      "source_sha256": "75f77b0678d1340531ae6a5926e8319a47a0ab7641c306564f7a8cae62452eb9"
+    },
+    "softcap_kernel": {
+      "module": "softcap",
+      "entrypoint": "softcap",
+      "source": "softcap.py",
+      "source_sha256": "644c7837051d760d849912f1d0586b3ab70d234f636dc4ced51eba83d2c3c1df"
+    }
+  },
+  "runtime_support_sources": [
+    {
+      "source": "__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "runtime_contracts.py",
+      "source_sha256": "1b60a241d22f43be883202a9f6d6b3cc276e6bddedf7afb289f4f6516dfb0105"
+    },
+    {
+      "source": "constants.py",
+      "source_sha256": "d0d5294d20780ede3e2ca358b8350fdf01bbe3527834cd1074ed983d3656393b"
+    }
+  ]
+}

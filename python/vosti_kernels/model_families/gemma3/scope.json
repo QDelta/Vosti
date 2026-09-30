@@ -1,0 +1,909 @@
+{
+  "schema": "vosti.model-runtime-scope.v1",
+  "status": "qualification_scope",
+  "engine_reachable": false,
+  "architecture": "gemma3_text",
+  "runtime": {
+    "dtype": "torch.bfloat16",
+    "device_type": "cuda"
+  },
+  "deferred_obligations": [
+    "memory_efficient_sliding_window_kv_eviction_and_its_window_only_dependency_proof"
+  ],
+  "trusted_framework_operations": [
+    "packed_qkv_head_reshape",
+    "per_attention_kind_rope_table_generation",
+    "gate_up_split",
+    "last_query_row_selection"
+  ],
+  "kernel_contracts": [
+    {
+      "wrapper": "gemma3_scaled_embed",
+      "kernel": "scaled_embedding_kernel",
+      "evidence": "structural_batch_decomposition_not_numeric_correctness"
+    },
+    {
+      "wrapper": "gemma3_rms_norm",
+      "kernel": "gemma_rmsnorm_kernel",
+      "evidence": "structural_batch_decomposition_not_numeric_correctness"
+    },
+    {
+      "wrapper": "linear",
+      "kernel": "matmul_kernel",
+      "evidence": "regional_certificate"
+    },
+    {
+      "wrapper": "qkv_linear",
+      "kernel": "qkv_matmul_kernel",
+      "evidence": "regional_certificate"
+    },
+    {
+      "wrapper": "gemma3_qk_norm",
+      "kernel": "gemma_head_rms_norm_kernel",
+      "evidence": "structural_batch_decomposition_not_numeric_correctness"
+    },
+    {
+      "wrapper": "rotary_embed",
+      "kernel": "rope_kernel",
+      "evidence": "regional_certificate"
+    },
+    {
+      "wrapper": "store_kv_cache",
+      "kernel": "store_cache_kernel",
+      "evidence": "exact_effect_certificate"
+    },
+    {
+      "wrapper": "paged_attention",
+      "kernel": "fattn_varlen_paged_fwd_block_ptr_kernel",
+      "evidence": "conditional_relational_certificate"
+    },
+    {
+      "wrapper": "paged_attention_swa",
+      "kernel": "fattn_varlen_paged_swa_kernel",
+      "evidence": "conditional_relational_certificate"
+    },
+    {
+      "wrapper": "gemma3_add",
+      "kernel": "add_kernel",
+      "evidence": "structural_batch_decomposition_not_numeric_correctness"
+    },
+    {
+      "wrapper": "gemma3_gelu_tanh_mul",
+      "kernel": "gelu_tanh_mul_kernel",
+      "evidence": "structural_batch_decomposition_not_numeric_correctness"
+    }
+  ],
+  "model_profiles": [
+    {
+      "model": {
+        "name": "gemma-3-4b-it-text",
+        "vocab_size": 262208,
+        "hidden_size": 2560,
+        "intermediate_size": 10240,
+        "num_hidden_layers": 34,
+        "num_attention_heads": 8,
+        "num_key_value_heads": 4,
+        "head_dim": 256,
+        "max_position_embeddings": 131072,
+        "rms_norm_eps": 1e-06,
+        "query_pre_attn_scalar": 256.0,
+        "sliding_window": 1024,
+        "local_rope_theta": 10000.0,
+        "global_rope_theta": 1000000.0,
+        "global_rope_factor": 8.0,
+        "attention_pattern": {
+          "period": 6,
+          "full_attention_offset": 5
+        }
+      },
+      "launches": [
+        {
+          "wrapper": "gemma3_scaled_embed",
+          "sites": [
+            "token_embedding"
+          ],
+          "key": {
+            "width": 2560
+          },
+          "config": {
+            "D": 2560,
+            "BLOCK_M": 1,
+            "BLOCK_D": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_rms_norm",
+          "sites": [
+            "input_norm",
+            "post_attention_norm",
+            "pre_feedforward_norm",
+            "post_feedforward_norm",
+            "final_norm"
+          ],
+          "key": {
+            "width": 2560
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 8,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "qkv_linear",
+          "sites": [
+            "qkv_projection"
+          ],
+          "key": {
+            "q_width": 2048,
+            "kv_width": 1024,
+            "k": 2560
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 32,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "o_projection"
+          ],
+          "key": {
+            "n": 2560,
+            "k": 2048
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "BLOCK_K": 512,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "gate_up_projection"
+          ],
+          "key": {
+            "n": 20480,
+            "k": 2560
+          },
+          "config": {
+            "BLOCK_M": 64,
+            "BLOCK_N": 128,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "down_projection"
+          ],
+          "key": {
+            "n": 2560,
+            "k": 10240
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "BLOCK_K": 512,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "tied_lm_head"
+          ],
+          "key": {
+            "n": 262208,
+            "k": 2560
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_qk_norm",
+          "sites": [
+            "q_norm"
+          ],
+          "key": {
+            "heads": 8,
+            "head_dim": 256
+          },
+          "config": {
+            "H": 8,
+            "D": 256,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_qk_norm",
+          "sites": [
+            "k_norm"
+          ],
+          "key": {
+            "heads": 4,
+            "head_dim": 256
+          },
+          "config": {
+            "H": 4,
+            "D": 256,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "rotary_embed",
+          "sites": [
+            "rotary_embed_q",
+            "rotary_embed_k"
+          ],
+          "key": {
+            "width": 256
+          },
+          "config": {
+            "D": 256,
+            "HD": 128,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "store_kv_cache",
+          "sites": [
+            "store_k",
+            "store_v"
+          ],
+          "key": {
+            "kvd": 1024
+          },
+          "config": {
+            "KVD": 1024,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "paged_attention",
+          "sites": [
+            "full_attention"
+          ],
+          "key": {
+            "head_dim": 256
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 256
+          }
+        },
+        {
+          "wrapper": "paged_attention_swa",
+          "sites": [
+            "sliding_attention"
+          ],
+          "key": {
+            "head_dim": 256,
+            "window_size": 1024
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 256
+          }
+        },
+        {
+          "wrapper": "gemma3_add",
+          "sites": [
+            "attention_residual_add",
+            "feedforward_residual_add"
+          ],
+          "key": {
+            "width": 2560
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_gelu_tanh_mul",
+          "sites": [
+            "mlp_activation"
+          ],
+          "key": {
+            "width": 10240
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 1024,
+            "num_warps": 8,
+            "num_stages": 1
+          }
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "gemma-3-12b-it-text",
+        "vocab_size": 262208,
+        "hidden_size": 3840,
+        "intermediate_size": 15360,
+        "num_hidden_layers": 48,
+        "num_attention_heads": 16,
+        "num_key_value_heads": 8,
+        "head_dim": 256,
+        "max_position_embeddings": 131072,
+        "rms_norm_eps": 1e-06,
+        "query_pre_attn_scalar": 256.0,
+        "sliding_window": 1024,
+        "local_rope_theta": 10000.0,
+        "global_rope_theta": 1000000.0,
+        "global_rope_factor": 8.0,
+        "attention_pattern": {
+          "period": 6,
+          "full_attention_offset": 5
+        }
+      },
+      "launches": [
+        {
+          "wrapper": "gemma3_scaled_embed",
+          "sites": [
+            "token_embedding"
+          ],
+          "key": {
+            "width": 3840
+          },
+          "config": {
+            "D": 3840,
+            "BLOCK_M": 1,
+            "BLOCK_D": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_rms_norm",
+          "sites": [
+            "input_norm",
+            "post_attention_norm",
+            "pre_feedforward_norm",
+            "post_feedforward_norm",
+            "final_norm"
+          ],
+          "key": {
+            "width": 3840
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 8,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "qkv_linear",
+          "sites": [
+            "qkv_projection"
+          ],
+          "key": {
+            "q_width": 4096,
+            "kv_width": 2048,
+            "k": 3840
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "o_projection"
+          ],
+          "key": {
+            "n": 3840,
+            "k": 4096
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "gate_up_projection"
+          ],
+          "key": {
+            "n": 30720,
+            "k": 3840
+          },
+          "config": {
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 8,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "down_projection"
+          ],
+          "key": {
+            "n": 3840,
+            "k": 15360
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "tied_lm_head"
+          ],
+          "key": {
+            "n": 262208,
+            "k": 3840
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_qk_norm",
+          "sites": [
+            "q_norm"
+          ],
+          "key": {
+            "heads": 16,
+            "head_dim": 256
+          },
+          "config": {
+            "H": 16,
+            "D": 256,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_qk_norm",
+          "sites": [
+            "k_norm"
+          ],
+          "key": {
+            "heads": 8,
+            "head_dim": 256
+          },
+          "config": {
+            "H": 8,
+            "D": 256,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "rotary_embed",
+          "sites": [
+            "rotary_embed_q",
+            "rotary_embed_k"
+          ],
+          "key": {
+            "width": 256
+          },
+          "config": {
+            "D": 256,
+            "HD": 128,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "store_kv_cache",
+          "sites": [
+            "store_k",
+            "store_v"
+          ],
+          "key": {
+            "kvd": 2048
+          },
+          "config": {
+            "KVD": 2048,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "paged_attention",
+          "sites": [
+            "full_attention"
+          ],
+          "key": {
+            "head_dim": 256
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 256
+          }
+        },
+        {
+          "wrapper": "paged_attention_swa",
+          "sites": [
+            "sliding_attention"
+          ],
+          "key": {
+            "head_dim": 256,
+            "window_size": 1024
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 256
+          }
+        },
+        {
+          "wrapper": "gemma3_add",
+          "sites": [
+            "attention_residual_add",
+            "feedforward_residual_add"
+          ],
+          "key": {
+            "width": 3840
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_gelu_tanh_mul",
+          "sites": [
+            "mlp_activation"
+          ],
+          "key": {
+            "width": 15360
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 1024,
+            "num_warps": 8,
+            "num_stages": 1
+          }
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "gemma-3-27b-it-text",
+        "vocab_size": 262208,
+        "hidden_size": 5376,
+        "intermediate_size": 21504,
+        "num_hidden_layers": 62,
+        "num_attention_heads": 32,
+        "num_key_value_heads": 16,
+        "head_dim": 128,
+        "max_position_embeddings": 131072,
+        "rms_norm_eps": 1e-06,
+        "query_pre_attn_scalar": 168.0,
+        "sliding_window": 1024,
+        "local_rope_theta": 10000.0,
+        "global_rope_theta": 1000000.0,
+        "global_rope_factor": 8.0,
+        "attention_pattern": {
+          "period": 6,
+          "full_attention_offset": 5
+        }
+      },
+      "launches": [
+        {
+          "wrapper": "gemma3_scaled_embed",
+          "sites": [
+            "token_embedding"
+          ],
+          "key": {
+            "width": 5376
+          },
+          "config": {
+            "D": 5376,
+            "BLOCK_M": 1,
+            "BLOCK_D": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_rms_norm",
+          "sites": [
+            "input_norm",
+            "post_attention_norm",
+            "pre_feedforward_norm",
+            "post_feedforward_norm",
+            "final_norm"
+          ],
+          "key": {
+            "width": 5376
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 8192,
+            "num_warps": 8,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "qkv_linear",
+          "sites": [
+            "qkv_projection"
+          ],
+          "key": {
+            "q_width": 4096,
+            "kv_width": 2048,
+            "k": 5376
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "o_projection"
+          ],
+          "key": {
+            "n": 5376,
+            "k": 4096
+          },
+          "config": {
+            "BLOCK_M": 64,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "gate_up_projection"
+          ],
+          "key": {
+            "n": 43008,
+            "k": 5376
+          },
+          "config": {
+            "BLOCK_M": 64,
+            "BLOCK_N": 128,
+            "BLOCK_K": 128,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "down_projection"
+          ],
+          "key": {
+            "n": 5376,
+            "k": 21504
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "tied_lm_head"
+          ],
+          "key": {
+            "n": 262208,
+            "k": 5376
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_qk_norm",
+          "sites": [
+            "q_norm"
+          ],
+          "key": {
+            "heads": 32,
+            "head_dim": 128
+          },
+          "config": {
+            "H": 32,
+            "D": 128,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_qk_norm",
+          "sites": [
+            "k_norm"
+          ],
+          "key": {
+            "heads": 16,
+            "head_dim": 128
+          },
+          "config": {
+            "H": 16,
+            "D": 128,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "rotary_embed",
+          "sites": [
+            "rotary_embed_q",
+            "rotary_embed_k"
+          ],
+          "key": {
+            "width": 128
+          },
+          "config": {
+            "D": 128,
+            "HD": 64,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "store_kv_cache",
+          "sites": [
+            "store_k",
+            "store_v"
+          ],
+          "key": {
+            "kvd": 2048
+          },
+          "config": {
+            "KVD": 2048,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "paged_attention",
+          "sites": [
+            "full_attention"
+          ],
+          "key": {
+            "head_dim": 128
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 128
+          }
+        },
+        {
+          "wrapper": "paged_attention_swa",
+          "sites": [
+            "sliding_attention"
+          ],
+          "key": {
+            "head_dim": 128,
+            "window_size": 1024
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 2,
+            "num_stages": 2,
+            "D_HEAD": 128
+          }
+        },
+        {
+          "wrapper": "gemma3_add",
+          "sites": [
+            "attention_residual_add",
+            "feedforward_residual_add"
+          ],
+          "key": {
+            "width": 5376
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "gemma3_gelu_tanh_mul",
+          "sites": [
+            "mlp_activation"
+          ],
+          "key": {
+            "width": 21504
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 1024,
+            "num_warps": 8,
+            "num_stages": 1
+          }
+        }
+      ]
+    }
+  ]
+}

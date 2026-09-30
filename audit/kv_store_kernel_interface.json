@@ -1,0 +1,352 @@
+{
+  "checked_dispatch_sha256": "1821016ab7fe2802b2f62da154695081d2382590e2f887e41b7bfc9095357337",
+  "dimensions": [
+    "KVD"
+  ],
+  "generated_body_sha256": "cc7e3bc1cb5106f36bd966d2f3eccd9ad446cc2f8fa6cc15abd11bbf8a0cc660",
+  "interfaces": [
+    {
+      "checked_adapter_sha256": "b82d420a881e8019d409d5136b725b87a1d42e2c0b2bbc6d295a2c696ec65523",
+      "geometry": {
+        "KVD": 512
+      },
+      "module": "geometry_KVD_512",
+      "raw": {
+        "generated_body_sha256": "b16df8ff884cc0600fe3a73ca355b4c53fa2bdc8eb704391577a63fd974064e4",
+        "implementations": [
+          {
+            "execute_name": "raw_execute",
+            "execution_identity": "45ef55f192e2c6ee1d332b7eee34d84fd08699cc215058a19ab9e9bf0e680a10",
+            "generated_body_sha256": "c5e16dabc35ac9abfcdfc68fea1c41e6f8895c5e5ec84b64ee878937652cb6f3",
+            "kind": "shared_execution",
+            "output_parameters": [
+              "cache"
+            ],
+            "schema_version": 1,
+            "side_type": "RawSide",
+            "standalone_contracts": [
+              {
+                "analyzer_conditions": [
+                  {
+                    "kind": "external_obligation",
+                    "label": "executed source and specialization correspond to the analyzed typed IR",
+                    "predicate_name": "raw_exact_effect_external_obligation_0"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "physical tensor shapes, strides, element dtypes and metadata match the logical launch state",
+                    "predicate_name": "raw_exact_effect_external_obligation_1"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "distinct tensor parameters have nonoverlapping physical storage",
+                    "predicate_name": "raw_exact_effect_external_obligation_2"
+                  }
+                ],
+                "certificate_name": "raw_exact_effect_certificate",
+                "dtype_parameters": [
+                  "cache",
+                  "slot_mapping",
+                  "x"
+                ],
+                "execute_name": "raw_execute",
+                "generated_body_sha256": "c5e16dabc35ac9abfcdfc68fea1c41e6f8895c5e5ec84b64ee878937652cb6f3",
+                "kernel": "store_cache_kernel",
+                "output_functions": [
+                  "raw_cache_after"
+                ],
+                "output_parameters": [
+                  "cache"
+                ],
+                "post_name": "raw_exact_effect_raw_post",
+                "pre_name": "raw_exact_effect_raw_pre",
+                "proof_kind": "exact_effect",
+                "raw_contract_digest": "a68d837703c51440955147abf4438974ca801214b97aa9ff96bb303e882f2bc9",
+                "schema_version": 3,
+                "singleton_name": null,
+                "state_relation": "before_after",
+                "symbol_prefix": "raw_exact_effect"
+              }
+            ]
+          }
+        ],
+        "interpretation": "one_fixed_deployed_implementation",
+        "kind": "static_implementation_interface",
+        "logical_body_sha256": "13ff2e9253e3c5384c1ac7f52b30da7ca4e9b883097c3eb8a79371a5ec944bc1",
+        "schema_version": 1
+      }
+    },
+    {
+      "checked_adapter_sha256": "1650a25b242a98563c065604000a0c07518daebcc853f03d56edf07413ea5f8b",
+      "geometry": {
+        "KVD": 1024
+      },
+      "module": "geometry_KVD_1024",
+      "raw": {
+        "generated_body_sha256": "04c36c3e9d959b3028b96e35817b325e524ee8117a30f1d1752bc749b79512e8",
+        "implementations": [
+          {
+            "execute_name": "raw_execute",
+            "execution_identity": "a5889fe633d1c0e421f24ab808fda2a3f13c76296c5d2569672f4e17acb3919d",
+            "generated_body_sha256": "c6f248a857e5467850cf8a5b91f0b706ac52e551c792d7d1b4fa6336ad0571eb",
+            "kind": "shared_execution",
+            "output_parameters": [
+              "cache"
+            ],
+            "schema_version": 1,
+            "side_type": "RawSide",
+            "standalone_contracts": [
+              {
+                "analyzer_conditions": [
+                  {
+                    "kind": "external_obligation",
+                    "label": "executed source and specialization correspond to the analyzed typed IR",
+                    "predicate_name": "raw_exact_effect_external_obligation_0"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "physical tensor shapes, strides, element dtypes and metadata match the logical launch state",
+                    "predicate_name": "raw_exact_effect_external_obligation_1"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "distinct tensor parameters have nonoverlapping physical storage",
+                    "predicate_name": "raw_exact_effect_external_obligation_2"
+                  }
+                ],
+                "certificate_name": "raw_exact_effect_certificate",
+                "dtype_parameters": [
+                  "cache",
+                  "slot_mapping",
+                  "x"
+                ],
+                "execute_name": "raw_execute",
+                "generated_body_sha256": "c6f248a857e5467850cf8a5b91f0b706ac52e551c792d7d1b4fa6336ad0571eb",
+                "kernel": "store_cache_kernel",
+                "output_functions": [
+                  "raw_cache_after"
+                ],
+                "output_parameters": [
+                  "cache"
+                ],
+                "post_name": "raw_exact_effect_raw_post",
+                "pre_name": "raw_exact_effect_raw_pre",
+                "proof_kind": "exact_effect",
+                "raw_contract_digest": "4787aeac065cecbd30563fa0e6251a376ae92935e7b5ce66eceb64819bac6b3f",
+                "schema_version": 3,
+                "singleton_name": null,
+                "state_relation": "before_after",
+                "symbol_prefix": "raw_exact_effect"
+              }
+            ]
+          }
+        ],
+        "interpretation": "one_fixed_deployed_implementation",
+        "kind": "static_implementation_interface",
+        "logical_body_sha256": "da1bd7403cbefe65dc5a862c00ffac7a8efd7a47fd55d605970b22d739b8adf4",
+        "schema_version": 1
+      }
+    },
+    {
+      "checked_adapter_sha256": "2495698ba1c9be49799357d0f93be3ef1003c814e09391914919075bfc69d92a",
+      "geometry": {
+        "KVD": 2048
+      },
+      "module": "geometry_KVD_2048",
+      "raw": {
+        "generated_body_sha256": "4713ff79ed7eaab18ffc8de36e2546540814a40087f786d4fd39b0affab48b65",
+        "implementations": [
+          {
+            "execute_name": "raw_execute",
+            "execution_identity": "7e7f2474cb533885c819367316dfcdc72d54ec66fc7c212c8c9eab0ecd55607c",
+            "generated_body_sha256": "018b7280ab1920ea257efb8f212bdff7aac0b0e798d418dc8fda190355cfb3c0",
+            "kind": "shared_execution",
+            "output_parameters": [
+              "cache"
+            ],
+            "schema_version": 1,
+            "side_type": "RawSide",
+            "standalone_contracts": [
+              {
+                "analyzer_conditions": [
+                  {
+                    "kind": "external_obligation",
+                    "label": "executed source and specialization correspond to the analyzed typed IR",
+                    "predicate_name": "raw_exact_effect_external_obligation_0"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "physical tensor shapes, strides, element dtypes and metadata match the logical launch state",
+                    "predicate_name": "raw_exact_effect_external_obligation_1"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "distinct tensor parameters have nonoverlapping physical storage",
+                    "predicate_name": "raw_exact_effect_external_obligation_2"
+                  }
+                ],
+                "certificate_name": "raw_exact_effect_certificate",
+                "dtype_parameters": [
+                  "cache",
+                  "slot_mapping",
+                  "x"
+                ],
+                "execute_name": "raw_execute",
+                "generated_body_sha256": "018b7280ab1920ea257efb8f212bdff7aac0b0e798d418dc8fda190355cfb3c0",
+                "kernel": "store_cache_kernel",
+                "output_functions": [
+                  "raw_cache_after"
+                ],
+                "output_parameters": [
+                  "cache"
+                ],
+                "post_name": "raw_exact_effect_raw_post",
+                "pre_name": "raw_exact_effect_raw_pre",
+                "proof_kind": "exact_effect",
+                "raw_contract_digest": "ff3748eba5662e42fabf5c4bc3862928dd53d4962723b2d8e350e0b1355a529c",
+                "schema_version": 3,
+                "singleton_name": null,
+                "state_relation": "before_after",
+                "symbol_prefix": "raw_exact_effect"
+              }
+            ]
+          }
+        ],
+        "interpretation": "one_fixed_deployed_implementation",
+        "kind": "static_implementation_interface",
+        "logical_body_sha256": "79065963c8df193e27b6cbbe79085b177589d7cb43d80466006e0e6a65dd3600",
+        "schema_version": 1
+      }
+    },
+    {
+      "checked_adapter_sha256": "8ea2b261d81ac8c21c22c6a4b2e2cb3dc27d02662db539144c7c6dd98b266a23",
+      "geometry": {
+        "KVD": 4096
+      },
+      "module": "geometry_KVD_4096",
+      "raw": {
+        "generated_body_sha256": "78d8a49d464d996da7d0194154f1db29a28e6b5629c67ba00fb0be9a42153176",
+        "implementations": [
+          {
+            "execute_name": "raw_execute",
+            "execution_identity": "db6a350c5795c7085f38fe8e6956c57740d081f8742cfa61190f869b80543b3c",
+            "generated_body_sha256": "044a51dd0a2f46e6b3d261d00b1e961472d918d78e78e21a76a66d5caa197d6a",
+            "kind": "shared_execution",
+            "output_parameters": [
+              "cache"
+            ],
+            "schema_version": 1,
+            "side_type": "RawSide",
+            "standalone_contracts": [
+              {
+                "analyzer_conditions": [
+                  {
+                    "kind": "external_obligation",
+                    "label": "executed source and specialization correspond to the analyzed typed IR",
+                    "predicate_name": "raw_exact_effect_external_obligation_0"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "physical tensor shapes, strides, element dtypes and metadata match the logical launch state",
+                    "predicate_name": "raw_exact_effect_external_obligation_1"
+                  },
+                  {
+                    "kind": "external_obligation",
+                    "label": "distinct tensor parameters have nonoverlapping physical storage",
+                    "predicate_name": "raw_exact_effect_external_obligation_2"
+                  }
+                ],
+                "certificate_name": "raw_exact_effect_certificate",
+                "dtype_parameters": [
+                  "cache",
+                  "slot_mapping",
+                  "x"
+                ],
+                "execute_name": "raw_execute",
+                "generated_body_sha256": "044a51dd0a2f46e6b3d261d00b1e961472d918d78e78e21a76a66d5caa197d6a",
+                "kernel": "store_cache_kernel",
+                "output_functions": [
+                  "raw_cache_after"
+                ],
+                "output_parameters": [
+                  "cache"
+                ],
+                "post_name": "raw_exact_effect_raw_post",
+                "pre_name": "raw_exact_effect_raw_pre",
+                "proof_kind": "exact_effect",
+                "raw_contract_digest": "c000760280dba142cb1cc0b9d349b7942eb205374596b9b3e2cae5f4b14509ea",
+                "schema_version": 3,
+                "singleton_name": null,
+                "state_relation": "before_after",
+                "symbol_prefix": "raw_exact_effect"
+              }
+            ]
+          }
+        ],
+        "interpretation": "one_fixed_deployed_implementation",
+        "kind": "static_implementation_interface",
+        "logical_body_sha256": "709d062eeee0b8607b9f0fb26cd9ee3011b5ba9d31649fa33c43f5c6b5579c6c",
+        "schema_version": 1
+      }
+    }
+  ],
+  "inventory_contributions": [
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "KVD": 1024
+      },
+      "execution_identity": "a5889fe633d1c0e421f24ab808fda2a3f13c76296c5d2569672f4e17acb3919d",
+      "families": [
+        "gemma3",
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "store_cache_kernel",
+      "source": "store_kv_cache.py",
+      "structural_contract_digest": "dd94ace17181fbe798303bcd70b888155ac2e94a50c93ec1540cb1acba8ef1e7"
+    },
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "KVD": 2048
+      },
+      "execution_identity": "7e7f2474cb533885c819367316dfcdc72d54ec66fc7c212c8c9eab0ecd55607c",
+      "families": [
+        "gemma3",
+        "gemma4"
+      ],
+      "kernel": "store_cache_kernel",
+      "source": "store_kv_cache.py",
+      "structural_contract_digest": "921c54377976adbb90b73a42f84f03b48a79bbf71786a5f9ab4d719d656bbb80"
+    },
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "KVD": 4096
+      },
+      "execution_identity": "db6a350c5795c7085f38fe8e6956c57740d081f8742cfa61190f869b80543b3c",
+      "families": [
+        "gemma4"
+      ],
+      "kernel": "store_cache_kernel",
+      "source": "store_kv_cache.py",
+      "structural_contract_digest": "4307655a7fe97904967d185a25250d5912099e82f8a0aa35cc65c74ff9ca9e82"
+    },
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "KVD": 512
+      },
+      "execution_identity": "45ef55f192e2c6ee1d332b7eee34d84fd08699cc215058a19ab9e9bf0e680a10",
+      "families": [
+        "gemma4"
+      ],
+      "kernel": "store_cache_kernel",
+      "source": "store_kv_cache.py",
+      "structural_contract_digest": "dd01f40c5ff34979bf1b59b666bce4c8aafab9fd1c34fa1f3580948e8c6033b6"
+    }
+  ],
+  "kind": "geometry_dispatched_mutation_interface",
+  "schema_version": 1
+}

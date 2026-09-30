@@ -1,0 +1,430 @@
+{
+  "schema_version": 1,
+  "bridges": [
+    {
+      "name": "init_kv_caches",
+      "source_spans": [
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::init_kv_caches_contract",
+          "digest": "5bee11cc68d2f04760ed49e8928bc244dd2df65526f1b1a5227cca22f580ce19"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::init_kv_caches_runtime_contract",
+          "digest": "7e34de40d2da01800669df62597c84bc136ebecdf9f7d81e2e9f24f7c01c89eb"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::init_kv_caches",
+          "digest": "3ee8bc9862c099a1e6ef1e545aec2a74edbeb94b9f0807a027a91a48855cb692"
+        },
+        {
+          "path": "python/vosti_kernels/physical.py",
+          "name": "vosti_kernels::physical_tensor_contracts",
+          "digest": "2795e2bb3bba6107f8c8d031c010f508125c9b780f0145557e3ee6d6d73e8848"
+        }
+      ]
+    },
+    {
+      "name": "model_weights",
+      "source_spans": [
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::model_weights_contract",
+          "digest": "52f5b221bffde2d47b571d25cb56f70186497603fed4e73a30c1062f811d0968"
+        },
+        {
+          "path": "src/boundary/dense_swiglu_decoder.rs",
+          "name": "boundary::dense_swiglu_decoder::model_weights_contract",
+          "digest": "cf246dff5ec41bd6e91e76d1b44faba890bda8fcec1ff6f8faec0af5264592ee"
+        },
+        {
+          "path": "src/boundary/model_families/qwen3/weights.rs",
+          "name": "boundary::model_families::qwen3::model_weights_contract",
+          "digest": "4a2647e95f95bf5b3a508c8d68235e2ed7380427bc4fd731b921c3ded2ae87fb"
+        },
+        {
+          "path": "src/boundary/model_families/llama3/weights.rs",
+          "name": "boundary::model_families::llama3::model_weights_contract",
+          "digest": "5dee756f704b21bc2144e96978b757d8902200d89c2cb9ada2c54cfb45e6051f"
+        },
+        {
+          "path": "src/boundary/model_families/gemma3/weights.rs",
+          "name": "boundary::model_families::gemma3::model_weights_contract",
+          "digest": "e7581d850b038d47fb4198e8d7ff94a7e690c7dfe321eda5417b3ef7c3ea8fb3"
+        },
+        {
+          "path": "python/vosti_kernels/physical.py",
+          "name": "vosti_kernels::physical_tensor_contracts",
+          "digest": "2795e2bb3bba6107f8c8d031c010f508125c9b780f0145557e3ee6d6d73e8848"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/qwen3/physical.py",
+          "name": "vosti_kernels::qwen3_physical_model_contract",
+          "digest": "63f342ad86a5e808b0c0007880c9092a9fadf0862a02e3bfeea2c93cfe5f74b1"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/llama3/physical.py",
+          "name": "vosti_kernels::llama3_physical_model_contract",
+          "digest": "af7db918dca655378904350ead8cc3a164fba9c70a8b3a99ff791982485ba47f"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma3/physical.py",
+          "name": "vosti_kernels::gemma3_physical_model_contract",
+          "digest": "56c415010ca54893cd3354a22073728709076ffaa9bed2a1dbf6ab18e49f80ca"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_weights.rs",
+          "name": "boundary::four_norm_gated_weights::layer_contract",
+          "digest": "92467f0594a7fd8d01f174250c89290c87d5f22aff6e6e7afd9f0492eeb7cc6a"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_weights.rs",
+          "name": "boundary::four_norm_gated_weights::python_roles",
+          "digest": "056f87bfe196361c3ef9a9853515566c8068297b2b81161f3e947d55c5b942e2"
+        },
+        {
+          "path": "src/boundary/model_families/gemma4/weights.rs",
+          "name": "boundary::model_families::gemma4::model_weights_contract",
+          "digest": "55c4e19cddae017fc17f338f89815a04ea382375f5a8503a08e3346bf24e4dc6"
+        },
+        {
+          "path": "src/boundary/model_families/gemma4/weights.rs",
+          "name": "boundary::model_families::gemma4::config_dictionary",
+          "digest": "a20718ef088539250ef7a53a149751dc3b44f526f1a9966f916a7c45d5fd2f56"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma4/physical.py",
+          "name": "vosti_kernels::gemma4_physical_model_contract",
+          "digest": "cb64eda77c354abd7734c5db66d67a801981f5338cc7ffb69b30775c72b283f6"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma4/loader.py",
+          "name": "vosti_kernels::gemma4_configuration_contract",
+          "digest": "88da12f20978ae243b0f68ac1c1535e3fe3bfe3e20ae4b3c7433631c03013e2d"
+        }
+      ]
+    },
+    {
+      "name": "gemma3_checkpoint_loader",
+      "source_spans": [
+        {
+          "path": "src/boundary/four_norm_gated_weights.rs",
+          "name": "boundary::four_norm_gated_weights::checkpoint_roles",
+          "digest": "1111c7e981087b71d8226fa2804378656d912e745015b3f0b02d515e19f2c86e"
+        },
+        {
+          "path": "python/vosti_kernels/checkpoint.py",
+          "name": "vosti_kernels::checkpoint_io",
+          "digest": "1d02f442e476ff0b179d3bf8149ba71089d7dee13b24f5e995e7a65b97abd071"
+        },
+        {
+          "path": "src/boundary/model_deployment.rs",
+          "name": "boundary::model_deployment::text_checkpoint_loader",
+          "digest": "74c2f60163dc77ae60ce0758fa9ee8763f1ba5396fec7cdb7db9e7aeb8e4c3ab"
+        },
+        {
+          "path": "src/boundary/model_families/gemma3/deployment.rs",
+          "name": "boundary::model_families::gemma3::checkpoint_loader",
+          "digest": "b17dfe47a5b6a603ae703bc456c2c2da54756e0bad24d3f7895dd3e5229776bd"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma3/loader.py",
+          "name": "vosti_kernels::gemma3_checkpoint_loader",
+          "digest": "7df8ef4c073e02f9291b5f43cccecc73eb06a88dd75775c2de66406439a155e8"
+        }
+      ]
+    },
+    {
+      "name": "gemma4_checkpoint_loader",
+      "source_spans": [
+        {
+          "path": "python/vosti_kernels/checkpoint.py",
+          "name": "vosti_kernels::checkpoint_io",
+          "digest": "1d02f442e476ff0b179d3bf8149ba71089d7dee13b24f5e995e7a65b97abd071"
+        },
+        {
+          "path": "src/boundary/model_deployment.rs",
+          "name": "boundary::model_deployment::text_checkpoint_loader",
+          "digest": "74c2f60163dc77ae60ce0758fa9ee8763f1ba5396fec7cdb7db9e7aeb8e4c3ab"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_weights.rs",
+          "name": "boundary::four_norm_gated_weights::checkpoint_roles",
+          "digest": "1111c7e981087b71d8226fa2804378656d912e745015b3f0b02d515e19f2c86e"
+        },
+        {
+          "path": "src/boundary/model_families/gemma4/deployment.rs",
+          "name": "boundary::model_families::gemma4::checkpoint_loader",
+          "digest": "f64f2979e444bdda7e02fabc145be24f715b848ed8dea022043a590b028df232"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma4/loader.py",
+          "name": "vosti_kernels::gemma4_checkpoint_loader",
+          "digest": "a02eb9e9e7a16f307dbad2fea0c74fe2c0f1d0d11c827b9ba465cffef65807cc"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma4/loader.py",
+          "name": "vosti_kernels::gemma4_configuration_contract",
+          "digest": "88da12f20978ae243b0f68ac1c1535e3fe3bfe3e20ae4b3c7433631c03013e2d"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma4/physical.py",
+          "name": "vosti_kernels::gemma4_physical_model_contract",
+          "digest": "cb64eda77c354abd7734c5db66d67a801981f5338cc7ffb69b30775c72b283f6"
+        }
+      ]
+    },
+    {
+      "name": "llama3_checkpoint_loader",
+      "source_spans": [
+        {
+          "path": "python/vosti_kernels/checkpoint.py",
+          "name": "vosti_kernels::checkpoint_io",
+          "digest": "1d02f442e476ff0b179d3bf8149ba71089d7dee13b24f5e995e7a65b97abd071"
+        },
+        {
+          "path": "src/boundary/model_deployment.rs",
+          "name": "boundary::model_deployment::text_checkpoint_loader",
+          "digest": "74c2f60163dc77ae60ce0758fa9ee8763f1ba5396fec7cdb7db9e7aeb8e4c3ab"
+        },
+        {
+          "path": "src/boundary/model_families/llama3/deployment.rs",
+          "name": "boundary::model_families::llama3::checkpoint_loader",
+          "digest": "a7e9b58f81c89edc22c9742ac7fbec9ca6015ec1b7b859a3c9eb5983372dec23"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/llama3/loader.py",
+          "name": "vosti_kernels::llama3_checkpoint_loader",
+          "digest": "ff582023ee33b6435221c4df2c3296258bda5bd1054469009c6373b9437ec645"
+        }
+      ]
+    },
+    {
+      "name": "qwen3_checkpoint_loader",
+      "source_spans": [
+        {
+          "path": "src/boundary/model_deployment.rs",
+          "name": "boundary::model_deployment::text_checkpoint_loader",
+          "digest": "74c2f60163dc77ae60ce0758fa9ee8763f1ba5396fec7cdb7db9e7aeb8e4c3ab"
+        },
+        {
+          "path": "src/boundary/model_families/qwen3/deployment.rs",
+          "name": "boundary::model_families::qwen3::checkpoint_loader",
+          "digest": "6da5c6cd5174726330922b70134d36467328acfc018c1c014a142204888e9130"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/qwen3/loader.py",
+          "name": "vosti_kernels::qwen3_checkpoint_loader",
+          "digest": "36842b2a6d973eb4ed6630e69c60154ab95ad611ac9e94c27c9ef16f7b480a26"
+        }
+      ]
+    },
+    {
+      "name": "qualified_kernel_plan_capability",
+      "source_spans": [
+        {
+          "path": "python/vosti_kernels/model_profile.py",
+          "name": "vosti_kernels::profile_validation",
+          "digest": "6fb872a240eed95c0e8a983a7190410c321cd2ebaed7755d4209cecdbe78d815"
+        },
+        {
+          "path": "python/vosti_kernels/kernel_modules.py",
+          "name": "vosti_kernels::kernel_module_attestation",
+          "digest": "eb4290894d25176c412ec54cbf2a09e6a5734af3c06371b4dee98b27106ab0fd"
+        },
+        {
+          "path": "python/vosti_kernels/static_runtime.py",
+          "name": "vosti_kernels::static_primitive_runtime",
+          "digest": "383c5ce17d5a16cf6b9d92ff4506e167d8611f26a80f5d86b874d7d503b04d24"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::qualified_kernel_plan_capability",
+          "digest": "1e37e3aa3394c09aa767ff35460c4b0d712065e29ca7488982774085d579a7fa"
+        },
+        {
+          "path": "src/boundary/model_deployment.rs",
+          "name": "boundary::model_deployment::runtime_capability_host",
+          "digest": "be4e80ee448c3f2485ec84c89b325292308fde96c786b1adb2407f0b523c2045"
+        },
+        {
+          "path": "src/boundary/model_families/qwen3/deployment.rs",
+          "name": "boundary::model_families::qwen3::runtime_capability",
+          "digest": "cb2f96575da746d3ff7df7ab3d2169bfec657f4cfb392e28e5d5fb58b46265fa"
+        },
+        {
+          "path": "src/boundary/model_families/llama3/deployment.rs",
+          "name": "boundary::model_families::llama3::runtime_capability",
+          "digest": "2b9d730ebd4219828b0c93680cf3ee4d93a77f42e629711b7bfc894393ad3712"
+        },
+        {
+          "path": "src/boundary/model_families/gemma3/deployment.rs",
+          "name": "boundary::model_families::gemma3::runtime_capability",
+          "digest": "fa86f595f0b607b6a431a16f1f88c3fee80ccb3d64d87ce07a9588eb872043b1"
+        },
+        {
+          "path": "src/boundary/model_families/gemma4/deployment.rs",
+          "name": "boundary::model_families::gemma4::runtime_capability",
+          "digest": "97c68db1ae7e47854b546b15ac6c4ba0adf3a8fa0d8638ef507248d5c286832b"
+        },
+        {
+          "path": "src/exec/engine.rs",
+          "name": "exec::engine::qualified_kernel_plan_gate",
+          "digest": "d06b99b5a3510f5e4efa3554e73fb32546a497029b8a590c9f80bcccc85843d6"
+        },
+        {
+          "path": "src/exec/model.rs",
+          "name": "exec::model::qualified_kernel_plan_gate",
+          "digest": "404413f45510801c84192b9c2d29d763c847c95d9a11756a89e388895fb724e2"
+        },
+        {
+          "path": "python/vosti_kernels/primitive_runtime.py",
+          "name": "vosti_kernels::primitive_runtime_binding",
+          "digest": "19abecd498c514544184fc7faaa0e1d4d88c140dc4537053126605f795254588"
+        },
+        {
+          "path": "python/vosti_kernels/dense_runtime.py",
+          "name": "vosti_kernels::dense_runtime_capability",
+          "digest": "418a6a056dc60da1e78631e70ef388b366d064dda3ca3d4649e81707a5249be8"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/qwen3/runtime.py",
+          "name": "vosti_kernels::qwen3_runtime_capability",
+          "digest": "e9febef22d736456441e5fdf9582900b20aa1b5fbd4aba80a0bca100d7fc1a24"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/llama3/runtime.py",
+          "name": "vosti_kernels::llama3_runtime_capability",
+          "digest": "8ab2751314cbde5945d1ce4900cb713233809c92d527e339c061c84caf56d347"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/llama3/profile.py",
+          "name": "vosti_kernels::llama3_profile_registry",
+          "digest": "ecaa779566ba942a3a11677172fa43cf093ea06b275603e1c55ef5ee386140bc"
+        },
+        {
+          "path": "src/boundary/four_norm_gated_primitives.rs",
+          "name": "boundary::four_norm_gated_primitives::runtime",
+          "digest": "b4d65dca99a09743f17c2d760440a52bc9abf8e369b7f67e880931c919300784"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma3/runtime.py",
+          "name": "vosti_kernels::gemma3_runtime_capability",
+          "digest": "3ce404183827b29216be4f8195b93e6d76ace8c21687c9b17d71267a20bd877e"
+        },
+        {
+          "path": "python/vosti_kernels/model_families/gemma3/profile.py",
+          "name": "vosti_kernels::gemma3_profile_registry",
+          "digest": "ac5ea55a55258c3a9b24541ae6b75b8b6c1aba42d62d2c404aab015306d8f205"
+        }
+      ]
+    },
+    {
+      "name": "step_plan_materializers",
+      "source_spans": [
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::step_plan_materializers",
+          "digest": "ff04e811546dd35a8f4a6199bc4e0fe96b40c4b35a9fb023c03655b4cdf395c5"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::nonnegative_int32_guard",
+          "digest": "5773dca809d57cb5214846f963d14f01a5a798d03fe01596cb93d49d0004bff1"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::step_plan_materializers",
+          "digest": "2e53ca9eb5e44a00a7c5c0b9d13a454294e4546cd6f8665e83932d2da4aacca0"
+        }
+      ]
+    },
+    {
+      "name": "exact_runtime_adapters",
+      "source_spans": [
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::view_as_kv_repr",
+          "digest": "1fbd4635dd5743719ff231c8f42c396c445deadd81e5735bba5daf6e702bfcb8"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::select_sample_logits_repr",
+          "digest": "698a11871fabbead15c49f20ac3094b1fb83ec1ed304bffb6168f8b43f27b971"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::sample_from_repr",
+          "digest": "0422266bbb438cb54153cd757e0c67c9314bb1bc3a24bd400c726628426f3a03"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::view_as_kv",
+          "digest": "fcdf87e62d85772af102b374cbb2560eb0ddabe518b4a3cafdc60b2203df1deb"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::row_layout_adapters",
+          "digest": "af74d1d6893dc90517d9d52737a4abf3ea2d5f6f5c3900db175df6a09d4e4dad"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::select_last_hidden_rows",
+          "digest": "06f7c00cdd35a58eaa9861f442f02449ceb61d3c98add382e2f3a9158374a5bd"
+        },
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::sample_tokens_rows",
+          "digest": "5381ece87485609024c162d4d4d299dd2604e74e91d9a56fe423e466b84974c8"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::view_as_kv",
+          "digest": "81cd7fea78ddbf6fb4cd4471bc8c246f8fdacea06eeea9d3947eadec91da2c26"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::row_layout_adapters",
+          "digest": "b10ff0d00af19f3239c60e57b080265fc8e4a28b3348e673b9cd71800aeeb8e6"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::select_rows_for_sampling",
+          "digest": "af3171b0642dcb9b5bbe79f25a0925707a46b00e2e4dd540635d063231630d9a"
+        },
+        {
+          "path": "python/vosti_kernels/kernels.py",
+          "name": "vosti_kernels::sample_tokens_rows",
+          "digest": "37130866e72bd5ed7adc020babefc9b2f182a71561cdf6f40a8ad9095bd1aa81"
+        }
+      ]
+    },
+    {
+      "name": "cuda_graph_overlay",
+      "source_spans": [
+        {
+          "path": "src/boundary/tensor_runtime.rs",
+          "name": "boundary::tensor_runtime::cuda_graph_overlay_runtime",
+          "digest": "c98c9bef2113aca7a5486defab4fd003876ca19b185636c73045f372f77c73bd"
+        },
+        {
+          "path": "src/boundary/model_forward_graph.rs",
+          "name": "boundary::model_forward_graph::raw",
+          "digest": "e5eea1471ea9e66cff980403653a8d474fa912e994cf88a35d981054127e4a29"
+        },
+        {
+          "path": "src/exec/model_families/mod.rs",
+          "name": "exec::model_families::cuda_graph_overlay_contract",
+          "digest": "4481a05b73896c575df16e89ecd4cb3e5899b913162f5b60a16ae88b038d3d43"
+        },
+        {
+          "path": "python/vosti_kernels/graph_overlay.py",
+          "name": "vosti_kernels::cuda_graph_overlay",
+          "digest": "0d54c7bfc44e6ccc94b9cc03c7cef5a3345b17efc6bb8f63510ea8ceefdee94b"
+        }
+      ]
+    }
+  ]
+}

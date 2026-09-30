@@ -1,0 +1,61 @@
+{
+  "checked_adapter_sha256": "35d7c24993fd7957d7b157e058f2bd3f3396b83158f10afc49880bd6947670de",
+  "generated_body_sha256": "18461253289a67409a6fcdd98301668c21cabd6f11f98f8d2763b9aebac7705b",
+  "inventory_contributions": [
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "BLOCK_N": 1024
+      },
+      "execution_identity": "97855775f4f7586640f37fedfe6115f1f2d3b901efb01846aa8e3af85e91eaa9",
+      "families": [
+        "gemma4"
+      ],
+      "kernel": "softcap_kernel",
+      "source": "softcap.py"
+    }
+  ],
+  "kind": "rectangular_kernel_interface",
+  "raw": {
+    "generated_body_sha256": "c95f72e1e3a2443ff921fdfb79d7816fc46437fa331628db5e2772b9fd1937cd",
+    "implementations": [
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "97855775f4f7586640f37fedfe6115f1f2d3b901efb01846aa8e3af85e91eaa9",
+        "generated_body_sha256": "6b1cac73017feae98e98fb1de86f42a7f228b74e1838c18208679d9bdc75d507",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "o"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "6b1cac73017feae98e98fb1de86f42a7f228b74e1838c18208679d9bdc75d507",
+            "kernel": "softcap_kernel",
+            "output_functions": [
+              "raw_o_after"
+            ],
+            "output_parameters": [
+              "o"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "9946c4d4fad19cf0225c15a3308f9a08abfeddd44df2ac0a82bbaaa96c9858b6",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      }
+    ],
+    "interpretation": "one_fixed_deployed_implementation",
+    "kind": "static_implementation_interface",
+    "logical_body_sha256": "dd760824c8a8308a923b8f492ee92a621cf9cc1369c5396e7256c513772187df",
+    "schema_version": 1
+  },
+  "schema_version": 1
+}

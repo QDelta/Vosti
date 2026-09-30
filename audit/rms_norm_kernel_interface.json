@@ -1,0 +1,152 @@
+{
+  "checked_adapter_sha256": "d0fa524a0ac0f7b43ac18c99bf130956ea802508217efea507079190c2c26607",
+  "generated_body_sha256": "fcad095fe2a8ef42a18bbad0c1193453c7021b65f65fde5276a88a52f5c18357",
+  "inventory_contributions": [
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "BLOCK_N": 1024
+      },
+      "execution_identity": "1b7de84c08fa044efa9dc004c84af1047670607e48ee36831da02aa65acc4d3b",
+      "families": [
+        "qwen3"
+      ],
+      "kernel": "rmsnorm_kernel",
+      "source": "rmsnorm.py"
+    },
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "BLOCK_N": 4096
+      },
+      "execution_identity": "bc49385b2d3c34f706dba2a8bd1a8ea615ce9da49ccb055a5e598f2a61ce68b6",
+      "families": [
+        "gemma4",
+        "llama3",
+        "qwen3"
+      ],
+      "kernel": "rmsnorm_kernel",
+      "source": "rmsnorm.py"
+    },
+    {
+      "constants": {
+        "BLOCK_M": 1,
+        "BLOCK_N": 8192
+      },
+      "execution_identity": "d1c240c349f239d38ac34c391d12ea4ac000bdfa87ede1d832e329b7089340dd",
+      "families": [
+        "gemma4",
+        "llama3"
+      ],
+      "kernel": "rmsnorm_kernel",
+      "source": "rmsnorm.py"
+    }
+  ],
+  "kind": "rectangular_kernel_interface",
+  "raw": {
+    "generated_body_sha256": "c074d7e3124e3a4371b82bfb81df87932de123bb8418eac9994611212ea98b3b",
+    "implementations": [
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "1b7de84c08fa044efa9dc004c84af1047670607e48ee36831da02aa65acc4d3b",
+        "generated_body_sha256": "14e60d31c006e1836bc63309cb48711374b609d91b2990b48788448aaa926a19",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "o"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "14e60d31c006e1836bc63309cb48711374b609d91b2990b48788448aaa926a19",
+            "kernel": "rmsnorm_kernel",
+            "output_functions": [
+              "raw_o_after"
+            ],
+            "output_parameters": [
+              "o"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "6db9389cff329d5a3c5465fca5076b9279c2c8ba5a8384965f3d8668530079ed",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "bc49385b2d3c34f706dba2a8bd1a8ea615ce9da49ccb055a5e598f2a61ce68b6",
+        "generated_body_sha256": "663817bc213966e75882002b2f4981f1bd0c1a93b293a2872e78a8fc0fe35d7f",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "o"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "663817bc213966e75882002b2f4981f1bd0c1a93b293a2872e78a8fc0fe35d7f",
+            "kernel": "rmsnorm_kernel",
+            "output_functions": [
+              "raw_o_after"
+            ],
+            "output_parameters": [
+              "o"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "1f4c87b161cd8310c1ce17e1df9f8bc6abb7f69cb43a28f7f40d975d9a3ae56d",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      },
+      {
+        "execute_name": "raw_execute",
+        "execution_identity": "d1c240c349f239d38ac34c391d12ea4ac000bdfa87ede1d832e329b7089340dd",
+        "generated_body_sha256": "419899a813781ae17e3546c2b303a1d70dd1874efe60c96c0dc46e2c7ea61a09",
+        "kind": "shared_execution",
+        "output_parameters": [
+          "o"
+        ],
+        "schema_version": 1,
+        "side_type": "RawSide",
+        "standalone_contracts": [
+          {
+            "analyzer_conditions": [],
+            "certificate_name": "raw_batch_invariance_certificate",
+            "execute_name": "raw_execute",
+            "generated_body_sha256": "419899a813781ae17e3546c2b303a1d70dd1874efe60c96c0dc46e2c7ea61a09",
+            "kernel": "rmsnorm_kernel",
+            "output_functions": [
+              "raw_o_after"
+            ],
+            "output_parameters": [
+              "o"
+            ],
+            "post_name": "raw_batch_invariance_raw_post",
+            "pre_name": "raw_batch_invariance_raw_pre",
+            "raw_contract_digest": "eedb09bd01db01ffc76c5608286316ba3c5fd4e2fff05bc9c8eea27bc507874c",
+            "schema_version": 3,
+            "singleton_name": null,
+            "symbol_prefix": "raw_batch_invariance"
+          }
+        ]
+      }
+    ],
+    "interpretation": "one_fixed_deployed_implementation",
+    "kind": "static_implementation_interface",
+    "logical_body_sha256": "6e04334a448a9b395645c8d6055818df30f98292c03b26475ea11b64bbb35b5a",
+    "schema_version": 1
+  },
+  "schema_version": 1
+}

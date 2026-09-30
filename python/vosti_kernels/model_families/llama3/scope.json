@@ -1,0 +1,837 @@
+{
+  "schema": "vosti.model-runtime-scope.v1",
+  "status": "qualification_scope",
+  "engine_reachable": false,
+  "architecture": "llama3",
+  "model_profiles": [
+    {
+      "model": {
+        "name": "llama-3.2-3b",
+        "model_type": "llama",
+        "transformers_architecture": "LlamaForCausalLM",
+        "vocab_size": 128256,
+        "hidden_size": 3072,
+        "intermediate_size": 8192,
+        "num_hidden_layers": 28,
+        "num_attention_heads": 24,
+        "num_key_value_heads": 8,
+        "head_dim": 128,
+        "max_position_embeddings": 131072,
+        "rms_norm_eps": 1e-05,
+        "rope_theta": 500000.0,
+        "rope_factor": 32.0,
+        "rope_low_frequency_factor": 1.0,
+        "rope_high_frequency_factor": 4.0,
+        "rope_original_max_position_embeddings": 8192,
+        "tie_word_embeddings": true,
+        "hidden_act": "silu",
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "mlp_bias": false,
+        "pretraining_tp": 1,
+        "attention_kind": "full_attention",
+        "rope_scaling_kind": "llama3"
+      },
+      "launches": [
+        {"wrapper": "rms_norm", "sites": ["rms_norm"], "key": {"width": 3072}, "config": {"BLOCK_M": 1, "BLOCK_N": 4096, "num_warps": 8, "num_stages": 3}},
+        {"wrapper": "add_rms_norm", "sites": ["add_rms_norm"], "key": {"width": 3072}, "config": {"BLOCK_M": 1, "BLOCK_N": 4096, "num_warps": 8, "num_stages": 3}},
+        {"wrapper": "silu_and_mul", "sites": ["silu_and_mul"], "key": {"width": 8192}, "config": {"BLOCK_M": 1, "BLOCK_N": 1024, "num_warps": 8, "num_stages": 1}},
+        {"wrapper": "embed", "sites": ["embed"], "key": {"width": 3072}, "config": {"D": 3072, "BLOCK_M": 1, "BLOCK_D": 4096, "num_warps": 4, "num_stages": 3}},
+        {"wrapper": "store_kv_cache", "sites": ["store_k", "store_v"], "key": {"kvd": 1024}, "config": {"KVD": 1024, "BLOCK_M": 1, "num_warps": 4, "num_stages": 3}},
+        {"wrapper": "rotary_embed", "sites": ["rotary_embed_q", "rotary_embed_k"], "key": {"width": 128}, "config": {"D": 128, "HD": 64, "BLOCK_M": 1, "num_warps": 4, "num_stages": 3}},
+        {"wrapper": "qkv_linear", "sites": ["qkv_projection"], "key": {"q_width": 3072, "kv_width": 1024, "k": 3072}, "config": {"BLOCK_M": 32, "BLOCK_N": 64, "BLOCK_K": 256, "num_warps": 4, "num_stages": 3}},
+        {"wrapper": "linear", "sites": ["hidden_to_hidden", "o_projection"], "key": {"n": 3072, "k": 3072}, "config": {"BLOCK_M": 32, "BLOCK_N": 32, "BLOCK_K": 256, "num_warps": 4, "num_stages": 3}},
+        {"wrapper": "linear", "sites": ["gate_up_projection"], "key": {"n": 16384, "k": 3072}, "config": {"BLOCK_M": 64, "BLOCK_N": 128, "BLOCK_K": 64, "num_warps": 4, "num_stages": 4}},
+        {"wrapper": "linear", "sites": ["down_projection"], "key": {"n": 3072, "k": 8192}, "config": {"BLOCK_M": 32, "BLOCK_N": 32, "BLOCK_K": 256, "num_warps": 4, "num_stages": 3}},
+        {"wrapper": "linear", "sites": ["model_matmul_0"], "key": {"n": 128256, "k": 3072}, "config": {"BLOCK_M": 16, "BLOCK_N": 64, "BLOCK_K": 128, "num_warps": 2, "num_stages": 3}},
+        {"wrapper": "paged_attention", "sites": ["paged_attention"], "key": {"head_dim": 128}, "config": {"BLOCK_M": 16, "BLOCK_N": 64, "num_warps": 4, "num_stages": 2, "D_HEAD": 128}}
+      ]
+    },
+    {
+      "model": {
+        "name": "llama-3.1-8b",
+        "model_type": "llama",
+        "transformers_architecture": "LlamaForCausalLM",
+        "vocab_size": 128256,
+        "hidden_size": 4096,
+        "intermediate_size": 14336,
+        "num_hidden_layers": 32,
+        "num_attention_heads": 32,
+        "num_key_value_heads": 8,
+        "head_dim": 128,
+        "max_position_embeddings": 131072,
+        "rms_norm_eps": 1e-05,
+        "rope_theta": 500000.0,
+        "rope_factor": 8.0,
+        "rope_low_frequency_factor": 1.0,
+        "rope_high_frequency_factor": 4.0,
+        "rope_original_max_position_embeddings": 8192,
+        "tie_word_embeddings": false,
+        "hidden_act": "silu",
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "mlp_bias": false,
+        "pretraining_tp": 1,
+        "attention_kind": "full_attention",
+        "rope_scaling_kind": "llama3"
+      },
+      "launches": [
+        {
+          "wrapper": "rms_norm",
+          "sites": [
+            "rms_norm"
+          ],
+          "key": {
+            "width": 4096
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 8,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "add_rms_norm",
+          "sites": [
+            "add_rms_norm"
+          ],
+          "key": {
+            "width": 4096
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 4096,
+            "num_warps": 8,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "silu_and_mul",
+          "sites": [
+            "silu_and_mul"
+          ],
+          "key": {
+            "width": 14336
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 1024,
+            "num_warps": 8,
+            "num_stages": 1
+          }
+        },
+        {
+          "wrapper": "embed",
+          "sites": [
+            "embed"
+          ],
+          "key": {
+            "width": 4096
+          },
+          "config": {
+            "D": 4096,
+            "BLOCK_M": 1,
+            "BLOCK_D": 4096,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "store_kv_cache",
+          "sites": [
+            "store_k",
+            "store_v"
+          ],
+          "key": {
+            "kvd": 1024
+          },
+          "config": {
+            "KVD": 1024,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "rotary_embed",
+          "sites": [
+            "rotary_embed_q",
+            "rotary_embed_k"
+          ],
+          "key": {
+            "width": 128
+          },
+          "config": {
+            "D": 128,
+            "HD": 64,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "qkv_linear",
+          "sites": [
+            "qkv_projection"
+          ],
+          "key": {
+            "q_width": 4096,
+            "kv_width": 1024,
+            "k": 4096
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 64,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "hidden_to_hidden",
+            "o_projection"
+          ],
+          "key": {
+            "n": 4096,
+            "k": 4096
+          },
+          "config": {
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "gate_up_projection"
+          ],
+          "key": {
+            "n": 28672,
+            "k": 4096
+          },
+          "config": {
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 8,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "down_projection"
+          ],
+          "key": {
+            "n": 4096,
+            "k": 14336
+          },
+          "config": {
+            "BLOCK_M": 64,
+            "BLOCK_N": 32,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "model_matmul_0"
+          ],
+          "key": {
+            "n": 128256,
+            "k": 4096
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 128,
+            "num_warps": 2,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "paged_attention",
+          "sites": [
+            "paged_attention"
+          ],
+          "key": {
+            "head_dim": 128
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 128
+          }
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "llama-3.3-70b",
+        "model_type": "llama",
+        "transformers_architecture": "LlamaForCausalLM",
+        "vocab_size": 128256,
+        "hidden_size": 8192,
+        "intermediate_size": 28672,
+        "num_hidden_layers": 80,
+        "num_attention_heads": 64,
+        "num_key_value_heads": 8,
+        "head_dim": 128,
+        "max_position_embeddings": 131072,
+        "rms_norm_eps": 1e-05,
+        "rope_theta": 500000.0,
+        "rope_factor": 8.0,
+        "rope_low_frequency_factor": 1.0,
+        "rope_high_frequency_factor": 4.0,
+        "rope_original_max_position_embeddings": 8192,
+        "tie_word_embeddings": false,
+        "hidden_act": "silu",
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "mlp_bias": false,
+        "pretraining_tp": 1,
+        "attention_kind": "full_attention",
+        "rope_scaling_kind": "llama3"
+      },
+      "launches": [
+        {
+          "wrapper": "rms_norm",
+          "sites": [
+            "rms_norm"
+          ],
+          "key": {
+            "width": 8192
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 8192,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "add_rms_norm",
+          "sites": [
+            "add_rms_norm"
+          ],
+          "key": {
+            "width": 8192
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 8192,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "silu_and_mul",
+          "sites": [
+            "silu_and_mul"
+          ],
+          "key": {
+            "width": 28672
+          },
+          "config": {
+            "BLOCK_M": 1,
+            "BLOCK_N": 1024,
+            "num_warps": 8,
+            "num_stages": 1
+          }
+        },
+        {
+          "wrapper": "embed",
+          "sites": [
+            "embed"
+          ],
+          "key": {
+            "width": 8192
+          },
+          "config": {
+            "D": 8192,
+            "BLOCK_M": 1,
+            "BLOCK_D": 8192,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "store_kv_cache",
+          "sites": [
+            "store_k",
+            "store_v"
+          ],
+          "key": {
+            "kvd": 1024
+          },
+          "config": {
+            "KVD": 1024,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "rotary_embed",
+          "sites": [
+            "rotary_embed_q",
+            "rotary_embed_k"
+          ],
+          "key": {
+            "width": 128
+          },
+          "config": {
+            "D": 128,
+            "HD": 64,
+            "BLOCK_M": 1,
+            "num_warps": 4,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "qkv_linear",
+          "sites": [
+            "qkv_projection"
+          ],
+          "key": {
+            "q_width": 8192,
+            "kv_width": 1024,
+            "k": 8192
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 32,
+            "BLOCK_K": 128,
+            "num_warps": 2,
+            "num_stages": 3
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "hidden_to_hidden",
+            "o_projection"
+          ],
+          "key": {
+            "n": 8192,
+            "k": 8192
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 64,
+            "num_warps": 2,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "gate_up_projection"
+          ],
+          "key": {
+            "n": 57344,
+            "k": 8192
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 64,
+            "num_warps": 2,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "down_projection"
+          ],
+          "key": {
+            "n": 8192,
+            "k": 28672
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 64,
+            "num_warps": 2,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "linear",
+          "sites": [
+            "model_matmul_0"
+          ],
+          "key": {
+            "n": 128256,
+            "k": 8192
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "BLOCK_K": 64,
+            "num_warps": 2,
+            "num_stages": 4
+          }
+        },
+        {
+          "wrapper": "paged_attention",
+          "sites": [
+            "paged_attention"
+          ],
+          "key": {
+            "head_dim": 128
+          },
+          "config": {
+            "BLOCK_M": 16,
+            "BLOCK_N": 64,
+            "num_warps": 4,
+            "num_stages": 2,
+            "D_HEAD": 128
+          }
+        }
+      ]
+    }
+  ],
+  "runtime": {
+    "dtype": "torch.bfloat16",
+    "device_type": "cuda"
+  },
+  "kernel_contracts": [
+    {
+      "wrapper": "linear",
+      "kernel": "matmul_kernel",
+      "outputs": [
+        "c"
+      ],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::linear_repr",
+            "digest": "0fd66e30c23469122c0b1c6eabf500677eb32c7d69c8280e9f57cf887331b40e"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::linear",
+            "digest": "02986f5d6f5e225ab914c4552083a954e16afad371dd6cd04922479359012a6d"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::linear",
+            "digest": "4e296fe49a4d3dadeb66a0130fb5dcd173de4b64e466dba31455a91d7de4b042"
+          }
+        ],
+        "kernel_annotation_digest": "413eb5a3f9c0b2e1e80e4f927cf1fe72280fc692cf57c0b163e3af422e6aa2ec"
+      }
+    },
+    {
+      "wrapper": "qkv_linear",
+      "kernel": "qkv_matmul_kernel",
+      "outputs": ["oq", "ok", "ov"],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {"path": "src/boundary/tensor_runtime.rs", "name": "boundary::tensor_runtime::qkv_linear_repr", "digest": "69f88a4cc44a5535e2d47b394eff1cccf0f66d6a762be472aaf78ef1f5dede39"},
+          {"path": "src/boundary/tensor_runtime.rs", "name": "boundary::tensor_runtime::qkv_linear", "digest": "f7988d49a5bf09aa155cbb72d4afbe4fb41f16032c167dbfdfc85aea7c6e2619"},
+          {"path": "python/vosti_kernels/kernels.py", "name": "vosti_kernels::qkv_linear", "digest": "c286f88a655646a2dc15b54b514cdb3266a972318dc278e9cce557eaa8a5b415"}
+        ],
+        "kernel_annotation_digest": "d52593d25dce3faac44a3585c224189a04d053f34db5092cba2aa8a3a3ae7076"
+      }
+    },
+    {
+      "wrapper": "embed",
+      "kernel": "embedding_kernel",
+      "outputs": [
+        "o"
+      ],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::embed_repr",
+            "digest": "4decc0626b32f501c1cf65ab11ae0c700979ea0250df1cfbba9623d8d3068f75"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::embed",
+            "digest": "46c3d1e0986b95390ff981ecb19112662bc074ccda60d7cb0ae6f52fed1a8f0c"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::embed",
+            "digest": "937782e185299cb0f7b0a16517da4a9e33ef5228889098ffff24435a71806a9e"
+          }
+        ],
+        "kernel_annotation_digest": "89646c94d72fbbb8d2ff06c327d2e616356bac28518f927738253f045b8a6849"
+      }
+    },
+    {
+      "wrapper": "rms_norm",
+      "kernel": "rmsnorm_kernel",
+      "outputs": [
+        "o"
+      ],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::rms_norm_kernel_repr",
+            "digest": "e57309c9aa7d7b4e2d1e6e78ab5f2c8b015d326724985d10c28f1d457639d530"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::rms_norm_repr",
+            "digest": "ab707b567b79479bbf2714191b935d09baed1a446855313a6793831e1d8da6bb"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::rms_norm",
+            "digest": "1e74c78fc29777d7d643d014628a9c5af980af106a8958464ff72b53b5ba2b94"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::rms_norm",
+            "digest": "890f9fd65ae82983f7e6707da24957700f675a251627482ccfee7e7f5105c94f"
+          }
+        ],
+        "kernel_annotation_digest": "f9ba441d5d07f17c59b159acd9c8af96db94b921ec8a09f284b0405fe6eff761"
+      }
+    },
+    {
+      "wrapper": "add_rms_norm",
+      "kernel": "rmsnorm_residual_kernel",
+      "outputs": [
+        "o",
+        "residual_out"
+      ],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::add_rms_norm_kernel_repr",
+            "digest": "93b84d54ee6d3b5a36167bb6699a36e24a5d4a88d6018b9228ccd423ecf8babb"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::add_rms_norm_repr",
+            "digest": "d8410443a370a203a245b67acd98b038aae7974f8a00d9d744cf357b7f825be0"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::add_rms_norm",
+            "digest": "e8e9ef63fdabeaa6089d8d95655de23c02bd10a6918a1f2d65bec3eeb94f941d"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::add_rms_norm",
+            "digest": "ee9c47f0296265509db5ba22b10b2f71e82558f700d87c186bfc508417ef45a1"
+          }
+        ],
+        "kernel_annotation_digest": "1027511be58a8deca6e14ec3278a2285d2fab15b28f9a25ba454bcfa7de2d12c"
+      }
+    },
+    {
+      "wrapper": "rotary_embed",
+      "kernel": "rope_kernel",
+      "outputs": [
+        "o"
+      ],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::rope_kernel_repr",
+            "digest": "b603cbf5dda373901814482a6c2455650bff280615515ca27119560e5adf8e5f"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::rotary_adapters",
+            "digest": "1f6658d4d70c244b87dc605f3e7f4d467da2a4866ec9494a2d646cc2f159cb34"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::rotary_embed_repr",
+            "digest": "48d2c5209fe5b765366d4693fd73d75b98b537d916df43e60f316f8e6ec9d01f"
+          },
+          {
+            "path": "src/boundary/dense_layer_primitives.rs",
+            "name": "boundary::dense_layer_primitives::rotary_embed",
+            "digest": "071decdf3d273d87abe084df850260b0422626f7b0f3d6771655fb402cc65d6a"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::rotary_embed",
+            "digest": "1158a82f63f426fb1683add9734f5e7c9424a98c781aef18b2e93574c327a545"
+          }
+        ],
+        "kernel_annotation_digest": "b6af510ef112e812505ea12e4f3e50a1b2691a40a00ec6b3612c36a3c71ce6d1"
+      }
+    },
+    {
+      "wrapper": "silu_and_mul",
+      "kernel": "silu_mul_kernel",
+      "outputs": [
+        "o"
+      ],
+      "evidence": "regional_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::split_last_axis_half_repr",
+            "digest": "2977911d41449c8759d900f7345df87a418067c8daecfe1485d90b460c9b90b5"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::silu_mul_kernel_repr",
+            "digest": "1d1e65bfea5068000bd1c9cb85b3764957ef8f189d0cd3f6e11fe645625cb017"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::silu_and_mul_repr",
+            "digest": "e41713b28871fefe73ce673440989a5ac998a8ac980dc658c00b5852c3517f97"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::silu_and_mul",
+            "digest": "fad7487b80e72363839ddefa23c23877951c6e6427b758ab54f6c15f47586dc0"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::silu_and_mul",
+            "digest": "aeb8c5a18ee7ab123aad53aad51cc4a2e475127812c8581d91938dffe78c027a"
+          }
+        ],
+        "kernel_annotation_digest": "91c9a600b0db0c872b619465fd0e15ba6cfd001bafb3fb2f1cd5c0b4e301e634"
+      }
+    },
+    {
+      "wrapper": "store_kv_cache",
+      "kernel": "store_cache_kernel",
+      "outputs": [
+        "cache"
+      ],
+      "evidence": "exact_effect_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_cache_geometry",
+            "digest": "1c88908932b475d978e53e125831d5cb0e06e23dc86cfaaee6ca4387ec7dc187"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::store_kv_cache_metadata_ready",
+            "digest": "b6d25b7263007f5f50db9e14f8f26038b560e3d598f2d8c3e35bc2d8bab1682f"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::store_kv_cache_launch_ready",
+            "digest": "4c4461f76aea36d6f07971d0356ba77e9814ed9faa0d42a09f14774066d2025b"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::store_kv_cache_repr",
+            "digest": "595907372f0d6d2598b7b8e8aefe5c43f8a49f346f8e1380c25b4d01588dc4b0"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::store_kv_cache",
+            "digest": "f2b933a619d43bc237e4263fb53c5431ef5d5df049115bcbe531dd76f9a479bb"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::store_kv_cache_from_verified_caller",
+            "digest": "4e6c2a6e066cce11914023621d82a7d0b5c86f4d7e3c343cefd0537b18d4223d"
+          },
+          {
+            "path": "kernels/triton_kernels/store_kv_cache.py",
+            "name": "store_kv_cache::store_cache_kernel",
+            "digest": "08879d78fdf1902be2b9343a4dfa496f707b7a3700085e2679741c3e1d87671f"
+          },
+          {
+            "path": "kernels/triton_kernels/store_kv_cache.py",
+            "name": "store_kv_cache::store_kv_cache",
+            "digest": "0ed1aac4950cd8f0d5ef79a4ba593df72d8cb482ece0bc31dba9f7b453f83164"
+          }
+        ],
+        "kernel_annotation_digest": "d89efb3116642451ec4e2252861048b025b574f8307f7b1effa206e981062ecc"
+      }
+    },
+    {
+      "wrapper": "paged_attention",
+      "kernel": "fattn_varlen_paged_fwd_block_ptr_kernel",
+      "outputs": [
+        "o"
+      ],
+      "evidence": "conditional_relational_certificate",
+      "bridge": {
+        "source_spans": [
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_attention_repr",
+            "digest": "f7ec9b3c1992d9270cb7376f18a1595f823c336b9957b0c28498d1a0e463ab4d"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_attention_numeric_domain",
+            "digest": "4216f0d24549fce2b539054ba52095d56fbeda3d3e352b10ba2e1fb25605dbb6"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_attention_metadata_ready",
+            "digest": "d256f348371733c2f1a0e20186ae44fe3d19e9a4a1f4c65b112812f41ef644aa"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_cache_geometry",
+            "digest": "1c88908932b475d978e53e125831d5cb0e06e23dc86cfaaee6ca4387ec7dc187"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_attention_launch_ready",
+            "digest": "e9cc46cda1db9219948ccd53af564e337aebd0a5173b4c90fc964b92c0e2550b"
+          },
+          {
+            "path": "src/boundary/tensor_runtime.rs",
+            "name": "boundary::tensor_runtime::paged_attention",
+            "digest": "460a41fd2f7d31f8d583b9eb3f55dcd6650be11e8a38bd79e8c871386941063c"
+          },
+          {
+            "path": "python/vosti_kernels/kernels.py",
+            "name": "vosti_kernels::paged_attention_from_verified_caller",
+            "digest": "c4104019c79fb98b66a7fb9e7aec0721f916e4f9761efc580cb0653353f2924a"
+          },
+          {
+            "path": "kernels/triton_kernels/fattn_paged.py",
+            "name": "fattn_paged::physical_launch_adapter",
+            "digest": "980c96b7be0630336b3c7efc735c862abad159743a8865a9a5121bf369dcc5e7"
+          },
+          {
+            "path": "kernels/triton_kernels/runtime_contracts.py",
+            "name": "runtime_contracts::dense_launch_tensors",
+            "digest": "7ee80dc1851efe6b4ce976614a92a3d556679fe4d65a9bc755fa95d43f18da01"
+          }
+        ],
+        "kernel_annotation_digest": "cdfe38255a104c2dd518b01fd02851467bb4bb788606a984a28de1ee21210aa7"
+      }
+    }
+  ]
+}

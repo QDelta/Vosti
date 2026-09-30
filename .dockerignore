@@ -1,0 +1,7 @@
+# Only environment inputs enter the image; no Git history, weights, or results.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!uv.lock
+!rust-toolchain.toml

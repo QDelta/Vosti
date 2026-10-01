@@ -4,8 +4,8 @@ Vosti is a research prototype for deterministic LLM inference. It combines a
 Rust serving engine verified with Verus and annotated Triton kernels checked
 by a relational kernel verifier.
 
-This repository is the artifact for *Vosti: Specifying, Implementing, and
-Verifying Deterministic LLM Inference* (paper link forthcoming). The guides
+This repository is the artifact for [*Vosti: Specifying, Implementing, and
+Verifying Deterministic LLM Inference*](https://arxiv.org/abs/2609.38981). The guides
 below assume familiarity with the paper and explain how to check its proofs
 and repeat its experiments on your own hardware.
 
